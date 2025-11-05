@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joaquin Cubero - AI Developer Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --secondary: #1e40af;
+            --accent: #3b82f6;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --text: #1e293b;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--light);
+        }
+
+        /* Header */
+        header {
+            background: var(--gradient);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Section */
+        section {
+            margin: 4rem 0;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        section h2 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        /* About */
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .contact-info {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+
+        .contact-info p {
+            margin: 0.5rem 0;
+        }
+
+        .contact-info a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        /* Experience */
+        .experience-item {
+            margin-bottom: 2.5rem;
+            padding: 1.5rem;
+            background: var(--light);
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .experience-item h3 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-item .company {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.3rem;
+        }
+
+        .experience-item .date {
+            color: var(--gray);
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .experience-item ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .experience-item li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .experience-item li:before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .skill-category {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+
+        .skill-category h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .skill-category ul {
+            list-style: none;
+        }
+
+        .skill-category li {
+            padding: 0.3rem 0;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+
+        .skill-category li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .project-card {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .project-card h4 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-card .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tech-tag {
+            background: var(--primary);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        /* Achievements */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .achievement-card {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--light);
+            border-radius: 8px;
+        }
+
+        .achievement-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .achievement-label {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            section {
+                padding: 1rem;
+            }
+        }
+
+        /* Highlight */
+        .highlight {
+            background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+            background-repeat: no-repeat;
+            background-size: 100% 0.2em;
+            background-position: 0 88%;
+            padding: 0 0.2em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Joaquin Cubero</h1>
+        <p>AI Developer | GenAI Engineer | Full-Stack Developer</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#achievements">Achievements</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <!-- About Section -->
+        <section id="about">
+            <h2>About Me</h2>
+            <div class="about">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <p><strong>Email:</strong> <a href="mailto:jcubero@gmail.com">jcubero@gmail.com</a></p>
+                    <p><strong>Phone:</strong> +506 8689-5526</p>
+                    <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/joaquin-cubero/" target="_blank">linkedin.com/in/joaquin-cubero</a></p>
+                    <p><strong>Location:</strong> San Jose, Costa Rica</p>
+                    <p><strong>Languages:</strong> Spanish (Native) | English (Fluent) | French (Intermediate)</p>
+                </div>
+                <div class="about-text">
+                    <p>AI Developer with <span class="highlight">25 years of software development experience</span> and <span class="highlight">3 years specializing in AI agent development</span>. Expert in building production-grade AI systems using LangChain, multi-agent orchestration, and machine learning implementations.</p>
+                    <p>Master of <span class="highlight">Cursor IDE</span> - leveraging AI-powered development tools for rapid, high-quality code delivery. Proven track record deploying AI solutions in e-commerce platforms (ParadigmStore) and financial services (Axos Bank).</p>
+                    <p>Strong background in full-stack development, API integration (REST, GraphQL), and modern AI frameworks. Specialized in fraud detection systems, conversational AI, computer vision, and autonomous agent architectures.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience">
+            <h2>Professional Experience</h2>
+            
+            <div class="experience-item">
+                <h3>AI Developer</h3>
+                <div class="company">ParadigmStore</div>
+                <div class="date">January 2024 - Present | Remote, San Jose, Costa Rica</div>
+                <ul>
+                    <li>Architected and deployed production multi-tenant e-commerce AI platform with 12 specialized AI agents serving real users</li>
+                    <li>Built LangChainOrchestrator for agent workflow orchestration using AgentExecutor, tools, and prompt chains (production code)</li>
+                    <li>Implemented dual memory systems: MemGPT (working/archival memory, auto-summarization) and GilgameshAI (memory decay, contextual categorization)</li>
+                    <li>Developed multi-modal computer vision: Gemini 2.5 Pro (face recognition, product image search, layout extraction) + LLaVA (self-hosted) + YOLO fallback</li>
+                    <li>Created AI-powered customer service agent with natural language processing, WhatsApp integration, and intent detection (Gemini 2.5 Pro)</li>
+                    <li>Built payment processing agent with Stripe, BAC Credomatic, PayPal, SINPE integration and 13% IVA tax calculation</li>
+                    <li>Implemented product catalog agent with intelligent search, admin dashboard, and shopping carousel (2,500+ products)</li>
+                    <li>Developed marketing automation agent with BigQuery analytics, Mailchimp integration, and 50K+ contact campaigns</li>
+                    <li>Built order management, shipping, delivery, SEO, CRM, tax, and image processing agents with full e-commerce lifecycle</li>
+                    <li>Deployed production system on DigitalOcean/Contabo VPS with 99.9%+ uptime, Docker, Nginx, Prometheus monitoring</li>
+                    <li>Integrated REST and GraphQL APIs for multi-system orchestration (payment, CRM, inventory, order management)</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <h3>AI Developer</h3>
+                <div class="company">Axos Bank</div>
+                <div class="date">December 2024 - October 2025 | Remote, United States</div>
+                <ul>
+                    <li>Developed and deployed production fraud detection AI agent with universal SDK support (C#, Python, JavaScript, Java, PHP, Ruby, Go)</li>
+                    <li>Implemented ML models (XGBoost, Neural Networks, Graph Neural Networks) achieving 95.2% accuracy with <600ms response time</li>
+                    <li>Built multi-modal fraud detection system (transaction, behavioral, conversational, audio) serving hundreds of thousands of users in production</li>
+                    <li>Created neural network memory management systems for enhanced AI performance and adaptive learning</li>
+                    <li>Led technical architecture decisions for AI-powered financial applications with enterprise-grade security</li>
+                    <li>Integrated AI agent frameworks for automated customer service solutions and fraud analysis</li>
+                    <li>Mastered Cursor IDE as primary development environment, leveraging AI-powered coding assistance for rapid, high-quality development</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <h3>Sr Xamarin and Maui Developer</h3>
+                <div class="company">Magaya Corporation</div>
+                <div class="date">August 2021 - July 2024 | United States</div>
+                <ul>
+                    <li>Led Xamarin.Forms and .NET MAUI development for Flow WMS warehouse management system</li>
+                    <li>Integrated GraphQL APIs for efficient data querying and real-time updates in enterprise mobile applications</li>
+                    <li>Spearheaded migration from Xamarin.Forms to .NET MAUI for cross-platform mobile applications</li>
+                    <li>Designed mobile architecture patterns (MVVM, Clean Architecture) for iOS, Android, and Windows platforms</li>
+                    <li>Collaborated with UI/UX designers and product managers to refine user interfaces and enhance operational efficiency</li>
+                    <li>Provided technical leadership and mentorship to junior developers</li>
+                    <li>Coordinated with Autonoma to implement AI-driven end-to-end (E2E) testing solutions</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <h3>Freelance Mobile Developer</h3>
+                <div class="company">Various Clients (Intelisoft S.A., YPrime, Proto-brz, Practice Law Institute, BIS S.A.)</div>
+                <div class="date">February 2015 - August 2021 | Remote</div>
+                <ul>
+                    <li>Developed Xamarin.Forms applications for Tributación Directa and Factura Electrónica (electronic invoicing and taxation)</li>
+                    <li>Created UberWash app with Uber-like functionality for car wash scheduling</li>
+                    <li>Built native iOS applications using XCode and Swift for INSURANCE Costa Rica (emergency services)</li>
+                    <li>Developed chat-based iOS applications for Zermat and Teledolar using Telegram Open Source</li>
+                    <li>Created cross-platform applications for clinical studies, book sharing, and product review management</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <h2>Key Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h4>ParadigmStore E-commerce Platform</h4>
+                    <p>Multi-tenant SaaS platform with 12 autonomous AI agents. Production deployment serving real users with 99.9%+ uptime.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">LangChain</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Docker</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">Gemini 2.5 Pro</span>
+                        <span class="tech-tag">Ollama</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h4>Axos Bank Fraud Detection Agent</h4>
+                    <p>Multi-modal AI system for real-time fraud detection. 95.2% accuracy, <600ms response time, serving hundreds of thousands of users.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">XGBoost</span>
+                        <span class="tech-tag">Neural Networks</span>
+                        <span class="tech-tag">GNN</span>
+                        <span class="tech-tag">RAG</span>
+                        <span class="tech-tag">Qdrant</span>
+                        <span class="tech-tag">Python</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h4>Customer Service AI Agent</h4>
+                    <p>LLM-driven customer service with multi-model intent detection, WhatsApp integration, and brand-aware response generation.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Gemini 2.5 Pro</span>
+                        <span class="tech-tag">MemGPT</span>
+                        <span class="tech-tag">GilgameshAI</span>
+                        <span class="tech-tag">WhatsApp API</span>
+                        <span class="tech-tag">LangChain</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h4>Payment Processing System</h4>
+                    <p>Multi-gateway payment processing with Stripe, BAC Credomatic, PayPal, SINPE integration and automated tax calculation.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Stripe</span>
+                        <span class="tech-tag">BAC Credomatic</span>
+                        <span class="tech-tag">PayPal</span>
+                        <span class="tech-tag">GraphQL</span>
+                        <span class="tech-tag">Flask</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h4>Universal Fraud Detection SDK</h4>
+                    <p>Cross-platform SDK supporting 7 languages (Python, C#, JavaScript, Java, PHP, Ruby, Go) with HTTP interception.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Multi-language</span>
+                        <span class="tech-tag">SDK</span>
+                        <span class="tech-tag">HTTP Interception</span>
+                        <span class="tech-tag">Zero-code Integration</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h4>Magaya Flow WMS Mobile</h4>
+                    <p>Enterprise warehouse management mobile application using .NET MAUI with GraphQL integration for real-time updates.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">.NET MAUI</span>
+                        <span class="tech-tag">Xamarin.Forms</span>
+                        <span class="tech-tag">GraphQL</span>
+                        <span class="tech-tag">MVVM</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>AI Frameworks & Tools</h4>
+                    <ul>
+                        <li>LangChain (Production - AgentExecutor, Tools, Chains)</li>
+                        <li>MemGPT, GilgameshAI (Memory Systems)</li>
+                        <li>LLaVA, YOLO (Computer Vision)</li>
+                        <li>OpenAI API, Google Gemini 2.5 Pro</li>
+                        <li>TensorFlow, PyTorch, Scikit-learn</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h4>AI Agent Development</h4>
+                    <ul>
+                        <li>Multi-agent orchestration (12 production agents)</li>
+                        <li>AgentExecutor, Prompt Engineering</li>
+                        <li>Autonomous task orchestration</li>
+                        <li>Natural Language Processing</li>
+                        <li>Conversational AI (WhatsApp integration)</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h4>ML & Data Engineering</h4>
+                    <ul>
+                        <li>XGBoost, Neural Networks, GNN</li>
+                        <li>Feature Engineering, Model Training</li>
+                        <li>BigQuery, PostgreSQL, Redis</li>
+                        <li>Data Pipelines, Real-time Processing</li>
+                        <li>RAG Systems (Qdrant, Embeddings)</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h4>Programming Languages</h4>
+                    <ul>
+                        <li>Python (3 years)</li>
+                        <li>JavaScript, TypeScript</li>
+                        <li>C#, Java</li>
+                        <li>SQL</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h4>APIs & Integration</h4>
+                    <ul>
+                        <li>REST APIs</li>
+                        <li>GraphQL (Magaya Corporation)</li>
+                        <li>Webhooks, WebSocket</li>
+                        <li>Payment Processing (Stripe, BAC, PayPal, SINPE)</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h4>Cloud & DevOps</h4>
+                    <ul>
+                        <li>Docker, Kubernetes</li>
+                        <li>Nginx, Prometheus</li>
+                        <li>DigitalOcean, Contabo VPS</li>
+                        <li>AWS, Azure, Google Cloud</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h4>Mobile Development</h4>
+                    <ul>
+                        <li>.NET MAUI, Xamarin.Forms</li>
+                        <li>iOS (XCode, Swift)</li>
+                        <li>Cross-platform Architecture</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h4>Development Tools</h4>
+                    <ul>
+                        <li>Cursor IDE (Master - Primary IDE)</li>
+                        <li>Windsurf Power User (Udemy)</li>
+                        <li>Git, CI/CD</li>
+                        <li>AI-Assisted Development</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievements Section -->
+        <section id="achievements">
+            <h2>Key Achievements</h2>
+            <div class="achievements-grid">
+                <div class="achievement-card">
+                    <div class="achievement-number">25</div>
+                    <div class="achievement-label">Years Software Development</div>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-number">3</div>
+                    <div class="achievement-label">Years AI Agent Development</div>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-number">12</div>
+                    <div class="achievement-label">Production AI Agents</div>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-number">99.9%+</div>
+                    <div class="achievement-label">System Uptime</div>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-number">&lt;600ms</div>
+                    <div class="achievement-label">Average Response Time</div>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-number">95.2%</div>
+                    <div class="achievement-label">Fraud Detection Accuracy</div>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-number">500+</div>
+                    <div class="achievement-label">Users Served (ParadigmStore)</div>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-number">100K+</div>
+                    <div class="achievement-label">Users Served (Axos Bank)</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 2rem;">
+                <h3 style="color: var(--primary); margin-bottom: 1rem;">Notable Achievements</h3>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: var(--primary); font-weight: bold;">▹</span>
+                        Built production fraud detection system serving hundreds of thousands of users with <600ms response time and 95.2% accuracy
+                    </li>
+                    <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: var(--primary); font-weight: bold;">▹</span>
+                        Architected 12-agent AI platform (ParadigmStore) with LangChain orchestration, dual memory systems, and multi-modal vision
+                    </li>
+                    <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: var(--primary); font-weight: bold;">▹</span>
+                        Mastered Cursor IDE as primary development tool, enabling rapid AI agent development and production deployment
+                    </li>
+                    <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: var(--primary); font-weight: bold;">▹</span>
+                        Deployed production e-commerce platform with 2,500+ products, multi-payment processing, and full order lifecycle
+                    </li>
+                    <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: var(--primary); font-weight: bold;">▹</span>
+                        Implemented GraphQL API integration at Magaya Corporation for enterprise warehouse management systems
+                    </li>
+                    <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: var(--primary); font-weight: bold;">▹</span>
+                        Developed computer vision systems using Gemini 2.5 Pro (face recognition, product search) + LLaVA + YOLO
+                    </li>
+                    <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: var(--primary); font-weight: bold;">▹</span>
+                        Created AI agent ecosystem with customer service, payment, marketing, fraud detection, shipping, and order management
+                    </li>
+                    <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: var(--primary); font-weight: bold;">▹</span>
+                        Achieved 99.9%+ uptime with production deployment on VPS, Docker, Nginx, and Prometheus monitoring
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Education & Certifications -->
+        <section id="education">
+            <h2>Education & Certifications</h2>
+            <div class="experience-item">
+                <h3>Master of Business Administration in AI for Business</h3>
+                <div class="company">Universidad Panamericana</div>
+                <div class="date">2023 - Present | Mexico City, Mexico</div>
+                <p>Specialized curriculum focusing on AI applications in business, machine learning implementation, and strategic technology leadership.</p>
+            </div>
+
+            <div class="experience-item">
+                <h3>Bachelor of Science in Systems Engineering</h3>
+                <div class="company">Universidad Internacional De Las Americas (UIA)</div>
+                <div class="date">2007 | San José, Costa Rica</div>
+            </div>
+
+            <div style="margin-top: 2rem;">
+                <h3 style="color: var(--primary); margin-bottom: 1rem;">Certifications & Achievements</h3>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: var(--primary); font-weight: bold;">▹</span>
+                        Master of Cursor IDE - Primary development environment, expert in AI-powered coding assistance and rapid development
+                    </li>
+                    <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: var(--primary); font-weight: bold;">▹</span>
+                        Windsurf Power User - Udemy
+                    </li>
+                    <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: var(--primary); font-weight: bold;">▹</span>
+                        AI Spark Diploma - Coforge University
+                    </li>
+                    <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: var(--primary); font-weight: bold;">▹</span>
+                        Information Security and Privacy Diploma - Coforge University
+                    </li>
+                    <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: var(--primary); font-weight: bold;">▹</span>
+                        Diploma in Precision Mechanics - INA (Instituto Nacional de Aprendizaje)
+                    </li>
+                    <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: var(--primary); font-weight: bold;">▹</span>
+                        Diploma in English Language - British Institute
+                    </li>
+                    <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: var(--primary); font-weight: bold;">▹</span>
+                        Google Cloud AI/ML Specialization (In Progress)
+                    </li>
+                    <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: var(--primary); font-weight: bold;">▹</span>
+                        Advanced Python Programming Certification
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2>Get In Touch</h2>
+            <div style="text-align: center; padding: 2rem;">
+                <p style="font-size: 1.2rem; margin-bottom: 1.5rem;">I'm always open to discussing new opportunities, interesting projects, or collaboration ideas.</p>
+                <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+                    <a href="mailto:jcubero@gmail.com" style="color: var(--primary); text-decoration: none; font-weight: 600; font-size: 1.1rem;">📧 jcubero@gmail.com</a>
+                    <a href="https://www.linkedin.com/in/joaquin-cubero/" target="_blank" style="color: var(--primary); text-decoration: none; font-weight: 600; font-size: 1.1rem;">💼 LinkedIn</a>
+                    <span style="color: var(--gray); font-weight: 600; font-size: 1.1rem;">📱 +506 8689-5526</span>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Joaquin Cubero. All rights reserved.</p>
+        <p style="margin-top: 0.5rem; opacity: 0.8;">AI Developer | GenAI Engineer | Full-Stack Developer</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Highlight active nav item on scroll
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section[id]');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('nav a').forEach(link => {
+                link.style.color = '';
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.style.color = 'var(--primary)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
