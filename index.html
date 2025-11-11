@@ -100,6 +100,17 @@
             z-index: 1000;
         }
         
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid var(--accent);
+            margin: 0 auto var(--space-md);
+            display: block;
+            object-fit: cover;
+            box-shadow: 0 8px 32px rgba(122, 183, 255, 0.3);
+        }
+        
         header h1 {
             font-size: var(--font-4xl);
             font-weight: 700;
@@ -501,6 +512,7 @@
 </head>
 <body>
     <header>
+        <img src="WebProfileJoaquin.png" alt="Joaquin Cubero" class="profile-image">
         <h1>Joaquin Cubero</h1>
         <p>AI Developer | AI Agent Architect | Full-Stack Developer</p>
     </header>
@@ -523,6 +535,7 @@
             <h2>About Me</h2>
             <div class="about">
                 <div class="contact-card">
+                    <img src="WebProfileJoaquin.png" alt="Joaquin Cubero" style="width: 100%; max-width: 200px; border-radius: var(--radius-lg); margin: 0 auto var(--space-md); display: block; border: 2px solid var(--accent);">
                     <h3>Contact Information</h3>
                     <p><strong>Email:</strong> <a href="mailto:jcubero@gmail.com">jcubero@gmail.com</a></p>
                     <p><strong>Phone:</strong> +506 8689-5526</p>
