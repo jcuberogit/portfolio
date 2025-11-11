@@ -426,32 +426,6 @@
             margin: var(--space-xl) 0;
         }
         
-        .cv-upload-area {
-            border: 2px dashed var(--border-color);
-            border-radius: var(--radius-md);
-            padding: var(--space-xl);
-            text-align: center;
-            transition: var(--transition);
-            cursor: pointer;
-            margin-bottom: var(--space-lg);
-        }
-        
-        .cv-upload-area:hover {
-            border-color: var(--accent);
-            background: var(--accent-light);
-        }
-        
-        .cv-upload-area.dragover {
-            border-color: var(--accent);
-            background: var(--accent-light);
-        }
-        
-        .cv-upload-icon {
-            font-size: var(--font-4xl);
-            color: var(--accent);
-            margin-bottom: var(--space-md);
-        }
-        
         .cv-download-btn {
             display: inline-block;
             background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
@@ -895,23 +869,6 @@
                     </a>
                     <p class="cv-info">English Version | Updated November 2025</p>
                 </div>
-                
-                <div style="margin-top: var(--space-xl); padding-top: var(--space-xl); border-top: 1px solid var(--border-color);">
-                    <h3 style="color: var(--text-primary); margin-bottom: var(--space-md); font-size: var(--font-lg);">Update Resume</h3>
-                    <div class="cv-upload-area" id="cvUploadArea">
-                        <div class="cv-upload-icon">
-                            <i class="fas fa-cloud-upload-alt"></i>
-                        </div>
-                        <p style="color: var(--text-secondary); margin-bottom: var(--space-sm); font-size: var(--font-lg);">
-                            <strong>Click or drag to upload new CV</strong>
-                        </p>
-                        <p style="color: var(--text-muted); font-size: var(--font-sm);">
-                            PDF files only (Max 10MB)
-                        </p>
-                        <input type="file" id="cvFileInput" accept=".pdf" style="display: none;">
-                    </div>
-                    <div id="uploadStatus" style="margin-top: var(--space-md); display: none;"></div>
-                </div>
             </div>
         </section>
 
@@ -1020,76 +977,6 @@
             });
         });
 
-        // CV Upload Functionality
-        const cvUploadArea = document.getElementById('cvUploadArea');
-        const cvFileInput = document.getElementById('cvFileInput');
-        const uploadStatus = document.getElementById('uploadStatus');
-
-        // Click to upload
-        cvUploadArea.addEventListener('click', () => {
-            cvFileInput.click();
-        });
-
-        // Drag and drop
-        cvUploadArea.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            cvUploadArea.classList.add('dragover');
-        });
-
-        cvUploadArea.addEventListener('dragleave', () => {
-            cvUploadArea.classList.remove('dragover');
-        });
-
-        cvUploadArea.addEventListener('drop', (e) => {
-            e.preventDefault();
-            cvUploadArea.classList.remove('dragover');
-            const files = e.dataTransfer.files;
-            if (files.length > 0) {
-                handleFileUpload(files[0]);
-            }
-        });
-
-        cvFileInput.addEventListener('change', (e) => {
-            if (e.target.files.length > 0) {
-                handleFileUpload(e.target.files[0]);
-            }
-        });
-
-        function handleFileUpload(file) {
-            if (file.type !== 'application/pdf') {
-                uploadStatus.innerHTML = '<p style="color: #e94560;">❌ Please upload a PDF file only.</p>';
-                uploadStatus.style.display = 'block';
-                return;
-            }
-
-            if (file.size > 10 * 1024 * 1024) {
-                uploadStatus.innerHTML = '<p style="color: #e94560;">❌ File size must be less than 10MB.</p>';
-                uploadStatus.style.display = 'block';
-                return;
-            }
-
-            // Show upload status
-            uploadStatus.innerHTML = '<p style="color: var(--accent);"><i class="fas fa-spinner fa-spin"></i> Uploading CV...</p>';
-            uploadStatus.style.display = 'block';
-
-            // Create FormData
-            const formData = new FormData();
-            formData.append('cv', file);
-            formData.append('filename', 'Joaquin_Cubero_CV_NOV_2025_AI.pdf');
-
-            // Note: This would require a backend endpoint to handle the upload
-            // For GitHub Pages, you would need to use GitHub API or a service like Netlify Drop
-            // For now, we'll show a message
-            setTimeout(() => {
-                uploadStatus.innerHTML = `
-                    <p style="color: var(--accent);">✅ File ready for upload!</p>
-                    <p style="color: var(--text-muted); font-size: var(--font-sm); margin-top: var(--space-xs);">
-                        Note: To enable file uploads, you'll need to set up a backend service or use GitHub API.
-                        For now, you can manually upload the file to your GitHub repository.
-                    </p>
-                `;
-            }, 1000);
-        }
     </script>
 </body>
 </html>
