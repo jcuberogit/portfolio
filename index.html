@@ -111,6 +111,21 @@
             box-shadow: 0 8px 32px rgba(122, 183, 255, 0.3);
         }
         
+        .brand-image {
+            max-width: 300px;
+            width: 100%;
+            height: auto;
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--space-sm);
+            box-shadow: 0 8px 32px rgba(122, 183, 255, 0.2);
+            transition: var(--transition);
+        }
+        
+        .brand-image:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 48px rgba(122, 183, 255, 0.3);
+        }
+        
         header h1 {
             font-size: var(--font-4xl);
             font-weight: 700;
@@ -486,8 +501,13 @@
 </head>
 <body>
     <header>
-        <h1>Joaquin Cubero</h1>
-        <p>AI Developer | AI Agent Architect | Full-Stack Developer</p>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: var(--space-md);">
+            <img src="BrandJoaquin.png" alt="Joaquin Cubero Brand" class="brand-image">
+            <div>
+                <h1>Joaquin Cubero</h1>
+                <p>AI Developer | AI Agent Architect | Full-Stack Developer</p>
+            </div>
+        </div>
     </header>
 
     <nav>
@@ -936,10 +956,14 @@
             <div class="card" style="margin-top: var(--space-xl);">
                 <h3 style="color: var(--text-primary); margin-bottom: var(--space-md); font-size: var(--font-xl); text-align: center;">
                     <i class="fas fa-calendar-alt" style="color: var(--accent); margin-right: var(--space-xs);"></i>
-                    Schedule a Meeting
+                    Schedule an Interview
                 </h3>
-                <p style="text-align: center; color: var(--text-secondary); margin-bottom: var(--space-lg);">
-                    Book a time that works for you. I'll receive a notification at <strong style="color: var(--accent);">jcubero@gmail.com</strong>
+                <p style="text-align: center; color: var(--text-secondary); margin-bottom: var(--space-sm);">
+                    Book a time that works for you. Available <strong style="color: var(--accent);">Monday - Friday, 10:00 AM - 4:00 PM</strong> (CST)
+                </p>
+                <p style="text-align: center; color: var(--text-muted); font-size: var(--font-sm); margin-bottom: var(--space-lg);">
+                    <i class="fas fa-sync-alt" style="margin-right: var(--space-xs);"></i>
+                    Automatically synced with my Google Calendar and Apple Calendar - only available times are shown
                 </p>
                 <!-- Calendly inline widget -->
                 <div class="calendly-inline-widget" 
