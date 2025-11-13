@@ -148,6 +148,16 @@
             box-shadow: 0 12px 48px rgba(122, 183, 255, 0.3);
         }
         
+        .brand-link {
+            display: inline-block;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .brand-link:hover {
+            opacity: 0.9;
+        }
+        
         header h1 {
             font-size: var(--font-4xl);
             font-weight: 700;
@@ -539,7 +549,9 @@
 <body>
     <header>
         <div class="header-content">
-            <img src="BrandJoaquin.png" alt="Joaquin Cubero Brand" class="brand-image">
+            <a href="https://www.pinterest.com/joaquincubero/" target="_blank" rel="noopener noreferrer" class="brand-link">
+                <img src="BrandJoaquin.png" alt="Joaquin Cubero Brand" class="brand-image">
+            </a>
             <div class="header-text">
                 <h1>Joaquin Cubero</h1>
                 <p>AI Developer | AI Agent Architect | Full-Stack Developer</p>
