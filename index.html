@@ -1086,7 +1086,7 @@
                         <i class="fas fa-download"></i> Download CV (English) - PDF
                     </a>
                     <script>
-                        (function() {
+                        document.addEventListener('DOMContentLoaded', function() {
                             const downloadLink = document.getElementById('cv-download-link');
                             if (downloadLink) {
                                 downloadLink.addEventListener('click', function(e) {
@@ -1096,55 +1096,64 @@
                                     const fileName = 'Joaquin_Cubero_CV.pdf';
                                     const fileUrl = 'Joaquin_Cubero_CV.pdf';
                                     
-                                    fetch(fileUrl, {
-                                        method: 'GET',
-                                        headers: {
-                                            'Content-Type': 'application/pdf',
-                                        },
-                                    })
+                                    console.log('Starting CV download:', fileName);
+                                    
+                                    fetch(fileUrl)
                                     .then(response => {
                                         if (!response.ok) {
-                                            throw new Error('Network response was not ok');
+                                            throw new Error('Network response was not ok: ' + response.status);
                                         }
+                                        const contentType = response.headers.get('content-type') || 'application/pdf';
+                                        console.log('Content-Type:', contentType);
                                         return response.blob();
                                     })
                                     .then(blob => {
-                                        // Create blob URL
-                                        const blobUrl = window.URL.createObjectURL(blob);
+                                        console.log('Blob created, size:', blob.size, 'type:', blob.type);
                                         
-                                        // Create download link
+                                        // Ensure blob has correct MIME type
+                                        const pdfBlob = new Blob([blob], { type: 'application/pdf' });
+                                        
+                                        // Create blob URL
+                                        const blobUrl = window.URL.createObjectURL(pdfBlob);
+                                        console.log('Blob URL created:', blobUrl);
+                                        
+                                        // Create download link with explicit attributes
                                         const link = document.createElement('a');
                                         link.style.display = 'none';
                                         link.href = blobUrl;
                                         link.download = fileName;
                                         link.setAttribute('download', fileName);
+                                        link.setAttribute('type', 'application/pdf');
                                         
-                                        // Append to body, click, and remove
+                                        // Append to body
                                         document.body.appendChild(link);
-                                        link.click();
                                         
-                                        // Cleanup
+                                        // Force click
+                                        const clickEvent = new MouseEvent('click', {
+                                            view: window,
+                                            bubbles: true,
+                                            cancelable: true
+                                        });
+                                        link.dispatchEvent(clickEvent);
+                                        
+                                        console.log('Download triggered for:', fileName);
+                                        
+                                        // Cleanup after delay
                                         setTimeout(() => {
-                                            document.body.removeChild(link);
+                                            if (link.parentNode) {
+                                                document.body.removeChild(link);
+                                            }
                                             window.URL.revokeObjectURL(blobUrl);
-                                        }, 100);
+                                            console.log('Cleanup completed');
+                                        }, 200);
                                     })
                                     .catch(error => {
                                         console.error('Error downloading CV:', error);
-                                        // Fallback: try direct download
-                                        const fallbackLink = document.createElement('a');
-                                        fallbackLink.href = fileUrl;
-                                        fallbackLink.download = fileName;
-                                        fallbackLink.style.display = 'none';
-                                        document.body.appendChild(fallbackLink);
-                                        fallbackLink.click();
-                                        setTimeout(() => {
-                                            document.body.removeChild(fallbackLink);
-                                        }, 100);
+                                        alert('Error downloading CV. Please try again or contact support.');
                                     });
                                 });
                             }
-                        })();
+                        });
                     </script>
                     <p class="cv-info">English Version | Updated January 2025</p>
                 </div>
