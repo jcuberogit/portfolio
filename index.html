@@ -1082,18 +1082,29 @@
             <div class="cv-section">
                 <h3 style="color: var(--text-primary); margin-bottom: var(--space-lg); font-size: var(--font-xl);">Download My Resume</h3>
                 <div style="text-align: center; padding: var(--space-lg);">
-                    <a href="Joaquin_Cubero_CV.pdf" download="Joaquin_Cubero_CV.pdf" class="cv-download-btn" id="cv-download-link">
+                    <a href="#" class="cv-download-btn" id="cv-download-link">
                         <i class="fas fa-download"></i> Download CV (English) - PDF
                     </a>
                     <script>
                         document.getElementById('cv-download-link').addEventListener('click', function(e) {
                             e.preventDefault();
-                            const link = document.createElement('a');
-                            link.href = 'Joaquin_Cubero_CV.pdf';
-                            link.download = 'Joaquin_Cubero_CV.pdf';
-                            document.body.appendChild(link);
-                            link.click();
-                            document.body.removeChild(link);
+                            fetch('Joaquin_Cubero_CV.pdf')
+                                .then(response => response.blob())
+                                .then(blob => {
+                                    const url = window.URL.createObjectURL(blob);
+                                    const link = document.createElement('a');
+                                    link.href = url;
+                                    link.download = 'Joaquin_Cubero_CV.pdf';
+                                    document.body.appendChild(link);
+                                    link.click();
+                                    document.body.removeChild(link);
+                                    window.URL.revokeObjectURL(url);
+                                })
+                                .catch(error => {
+                                    console.error('Error downloading CV:', error);
+                                    // Fallback to direct link
+                                    window.location.href = 'Joaquin_Cubero_CV.pdf';
+                                });
                         });
                     </script>
                     <p class="cv-info">English Version | Updated January 2025</p>
