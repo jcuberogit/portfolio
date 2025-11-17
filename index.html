@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joaquin Cubero - Senior .NET & AI Developer Lead</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* ============================================
+           PORTAL UI DESIGN SYSTEM
+           Based on paradigmstore.admin.dashboard
+           ============================================ */
+        
+        :root {
+            /* Background Colors */
+            --bg-primary: #0b1220;
+            --bg-secondary: #121a2b;
+            --bg-elevated: #1a2332;
+            --bg-hover: #243447;
+            
+            /* Borders */
+            --border-color: rgba(122, 183, 255, 0.15);
+            --border-hover: rgba(122, 183, 255, 0.3);
+            
+            /* Text Colors */
+            --text-primary: #ffffff;
+            --text-secondary: #a0b4d0;
+            --text-muted: #6b7f99;
+            
+            /* Brand Colors */
+            --accent: #7ab7ff;
+            --accent-hover: #8fc5ff;
+            --accent-light: rgba(122, 183, 255, 0.1);
+            
+            /* Spacing */
+            --space-xs: 0.5rem;
+            --space-sm: 1rem;
+            --space-md: 1.5rem;
+            --space-lg: 2rem;
+            --space-xl: 3rem;
+            --space-2xl: 4rem;
+            --space-3xl: 6rem;
+            
+            /* Typography */
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-xs: 0.75rem;
+            --font-sm: 0.875rem;
+            --font-base: 1rem;
+            --font-lg: 1.125rem;
+            --font-xl: 1.25rem;
+            --font-2xl: 1.5rem;
+            --font-3xl: 2rem;
+            --font-4xl: 2.5rem;
+            
+            /* Line Heights */
+            --leading-tight: 1.2;
+            --leading-normal: 1.5;
+            --leading-relaxed: 1.75;
+            
+            /* Border Radius */
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            
+            /* Shadows */
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.15);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.2);
+            
+            /* Transitions */
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-family);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: var(--leading-normal);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Header */
+        header {
+            background: rgba(11, 18, 32, 0.95);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid var(--border-color);
+            padding: 10px var(--space-xl);
+            text-align: left;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transform: translateY(0);
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        header.hidden {
+            transform: translateY(-100%);
+        }
+        
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 0 var(--space-xl);
+        }
+        
+        .header-text {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid var(--accent);
+            margin: 0 auto var(--space-md);
+            display: block;
+            object-fit: cover;
+            box-shadow: 0 8px 32px rgba(122, 183, 255, 0.3);
+        }
+        
+        .brand-image {
+            max-width: 100px;
+            width: 100px;
+            height: auto;
+            border-radius: var(--radius-lg);
+            box-shadow: 0 8px 32px rgba(122, 183, 255, 0.2);
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+        
+        .brand-image:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 48px rgba(122, 183, 255, 0.3);
+        }
+        
+        .brand-link {
+            display: inline-block;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .brand-link:hover {
+            opacity: 0.9;
+        }
+        
+        header h1 {
+            font-size: var(--font-4xl);
+            font-weight: 700;
+            margin-bottom: var(--space-xs);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+        }
+        
+        header p {
+            font-size: var(--font-lg);
+            color: var(--text-secondary);
+            font-weight: 500;
+            text-align: center;
+            margin: 0;
+        }
+        
+        /* Navigation */
+        nav {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+            margin: var(--space-xl) auto;
+            max-width: 1400px;
+            z-index: 999;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: var(--space-lg);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-xl);
+        }
+        
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: var(--font-base);
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+            background: transparent;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+        }
+        
+        nav a i {
+            color: var(--accent);
+            font-size: var(--font-sm);
+        }
+        
+        nav a:hover {
+            color: var(--accent);
+            background: var(--accent-light);
+            border-color: var(--border-hover);
+        }
+        
+        /* Floating Interview Button */
+        .floating-interview-btn {
+            position: fixed;
+            bottom: var(--space-xl);
+            right: var(--space-xl);
+            z-index: 1001;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+            color: #000000;
+            border: none;
+            border-radius: 50px;
+            padding: var(--space-md) var(--space-xl);
+            font-weight: 600;
+            font-size: var(--font-lg);
+            box-shadow: 0 4px 16px rgba(122, 183, 255, 0.3);
+            animation: pulse-glow 2s ease-in-out infinite;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .floating-interview-btn:hover {
+            background: linear-gradient(135deg, var(--accent-hover) 0%, var(--accent) 100%);
+            box-shadow: 0 6px 24px rgba(122, 183, 255, 0.5);
+            transform: translateY(-2px);
+        }
+        
+        .floating-interview-btn i {
+            color: #000000;
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 4px 16px rgba(122, 183, 255, 0.3);
+            }
+            50% {
+                box-shadow: 0 4px 24px rgba(122, 183, 255, 0.6);
+            }
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 120px var(--space-xl) var(--space-xl) var(--space-xl);
+        }
+        
+        .container > section:first-child {
+            padding-top: var(--space-sm);
+        }
+        
+        /* Section */
+        section {
+            margin: var(--space-3xl) 0;
+        }
+        
+        section#about {
+            margin-top: 0;
+            margin-bottom: var(--space-3xl);
+            padding-top: var(--space-sm);
+        }
+        
+        section h2 {
+            color: var(--text-primary);
+            font-size: var(--font-3xl);
+            font-weight: 700;
+            margin-bottom: var(--space-xl);
+            padding-bottom: var(--space-md);
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        /* Card Styles - Matching Dashboard */
+        .card {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            transition: var(--transition);
+            margin-bottom: var(--space-lg);
+        }
+        
+        .card:hover {
+            border-color: var(--border-hover);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+        
+        .card-header {
+            margin-bottom: var(--space-md);
+        }
+        
+        .card-title {
+            font-size: var(--font-xl);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--space-xs);
+        }
+        
+        .card-subtitle {
+            font-size: var(--font-base);
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        
+        .card-date {
+            color: var(--text-muted);
+            font-size: var(--font-sm);
+            font-style: italic;
+            margin-bottom: var(--space-sm);
+        }
+        
+        .card-body {
+            color: var(--text-secondary);
+            line-height: var(--leading-relaxed);
+        }
+        
+        .card-body ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .card-body li {
+            padding: var(--space-xs) 0;
+            padding-left: var(--space-lg);
+            position: relative;
+            color: var(--text-secondary);
+        }
+        
+        .card-body li:before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+        
+        /* About Section */
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: var(--space-xl);
+            align-items: start;
+        }
+        
+        .contact-card {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+        }
+        
+        .contact-card h3 {
+            color: var(--text-primary);
+            font-size: var(--font-xl);
+            margin-bottom: var(--space-md);
+            font-weight: 600;
+        }
+        
+        .contact-card p {
+            margin: var(--space-sm) 0;
+            color: var(--text-secondary);
+        }
+        
+        .contact-card a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .contact-card a:hover {
+            color: var(--accent-hover);
+        }
+        
+        .about-text {
+            font-size: var(--font-lg);
+            line-height: var(--leading-relaxed);
+            color: var(--text-secondary);
+        }
+        
+        .highlight {
+            color: var(--accent);
+            font-weight: 600;
+        }
+        
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: var(--space-lg);
+        }
+        
+        .project-card {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            transition: var(--transition);
+        }
+        
+        .project-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .project-card h4 {
+            color: var(--text-primary);
+            font-size: var(--font-xl);
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+        }
+        
+        .project-card p {
+            color: var(--text-secondary);
+            margin-bottom: var(--space-md);
+            line-height: var(--leading-relaxed);
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-xs);
+            margin-top: var(--space-md);
+        }
+        
+        .tech-tag {
+            background: var(--accent-light);
+            border: 1px solid var(--border-color);
+            color: var(--accent);
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: var(--radius-sm);
+            font-size: var(--font-xs);
+            font-weight: 500;
+        }
+        
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--space-lg);
+        }
+        
+        .skill-card {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+        }
+        
+        .skill-card h4 {
+            color: var(--accent);
+            font-size: var(--font-xl);
+            font-weight: 600;
+            margin-bottom: var(--space-md);
+        }
+        
+        .skill-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .skill-card li {
+            padding: var(--space-xs) 0;
+            padding-left: var(--space-md);
+            position: relative;
+            color: var(--text-secondary);
+        }
+        
+        .skill-card li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+        
+        /* Achievements Grid */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: var(--space-lg);
+        }
+        
+        .achievement-card {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            text-align: center;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .achievement-number {
+            font-size: var(--font-4xl);
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: var(--space-xs);
+        }
+        
+        .achievement-label {
+            color: rgba(0, 0, 0, 0.8);
+            font-size: var(--font-base);
+            font-weight: 500;
+        }
+        
+        /* CV Download Section */
+        .cv-section {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            margin: var(--space-xl) 0;
+        }
+        
+        .cv-download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+            color: #000000;
+            padding: var(--space-md) var(--space-xl);
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: var(--font-lg);
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            margin: var(--space-sm);
+        }
+        
+        .cv-download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .cv-info {
+            color: var(--text-muted);
+            font-size: var(--font-sm);
+            margin-top: var(--space-sm);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            text-align: center;
+            padding: var(--space-xl) 0;
+            margin-top: var(--space-lg);
+        }
+        
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: var(--space-lg);
+            justify-content: flex-start;
+            padding: 0 var(--space-xl);
+            position: relative;
+        }
+        
+        .footer-text {
+            flex: 1;
+            text-align: center;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: auto;
+        }
+        
+        .footer-brand {
+            margin-bottom: var(--space-md);
+        }
+        
+        .footer-brand img {
+            max-width: 80px;
+            width: 80px;
+            height: auto;
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--space-sm);
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+        
+        .footer-brand img:hover {
+            opacity: 1;
+            transform: translateY(-2px);
+        }
+        
+        .footer-brand-text {
+            color: var(--text-muted);
+            font-size: var(--font-sm);
+            margin-top: var(--space-xs);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: var(--font-3xl);
+            }
+            
+            .about {
+                grid-template-columns: 1fr;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: var(--space-sm);
+            }
+            
+            .projects-grid,
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--space-md);
+            }
+            
+            .footer-text {
+                text-align: left;
+            }
+            
+            .floating-interview-btn {
+                bottom: var(--space-md);
+                right: var(--space-md);
+                padding: var(--space-sm) var(--space-md);
+                font-size: var(--font-base);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="main-header">
+        <div class="header-content">
+            <div class="header-text">
+                <h1>Joaquin Cubero</h1>
+                <p>Senior .NET & AI Developer Lead | Azure AI Specialist</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="#about"><i class="fas fa-robot"></i> About</a></li>
+                <li><a href="#experience"><i class="fas fa-briefcase"></i> Experience</a></li>
+                <li><a href="#projects"><i class="fas fa-project-diagram"></i> Projects</a></li>
+                <li><a href="#skills"><i class="fas fa-tools"></i> Skills</a></li>
+                <li><a href="#achievements"><i class="fas fa-trophy"></i> Achievements</a></li>
+                <li><a href="#cv"><i class="fas fa-file-pdf"></i> CV</a></li>
+                <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+        </nav>
+        <!-- About Section -->
+        <section id="about">
+            <h2>About Me</h2>
+            <div class="about">
+                <div class="contact-card">
+                    <img src="WebProfileJoaquin.png" alt="Joaquin Cubero" style="width: 100%; max-width: 200px; border-radius: var(--radius-lg); margin: 0 auto var(--space-md); display: block;">
+                    <h3>Contact Information</h3>
+                    <p><strong>Email:</strong> <a href="mailto:jcubero@gmail.com">jcubero@gmail.com</a></p>
+                    <p><strong>Phone:</strong> +506 8689-5526</p>
+                    <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/joaquin-cubero/" target="_blank">linkedin.com/in/joaquin-cubero</a></p>
+                    <p><strong>GitHub:</strong> <a href="https://github.com/jcuberogit" target="_blank">github.com/jcuberogit</a></p>
+                    <p><strong>Location:</strong> San Jose, Costa Rica</p>
+                    <p><strong>Languages:</strong> Spanish (Native) | English (Fluent) | French (Intermediate)</p>
+                </div>
+                <div class="about-text">
+                    <p>.NET & AI Developer Lead with <span class="highlight">23+ years of .NET development experience</span> and <span class="highlight">3 years as an Azure AI specialist</span>. Expert in building production-grade Azure AI solutions using <span class="highlight">Azure OpenAI</span>, <span class="highlight">Azure AI Search</span>, <span class="highlight">Azure Document Intelligence</span>, and comprehensive cloud-native applications. Specialized in RAG (Retrieval-Augmented Generation) architecture, NLP with model evaluation (BLEU, ROUGE), and LangChain Memory Manager for .NET applications.</p>
+                    <p>Master of <span class="highlight">Cursor IDE</span> and <span class="highlight">Windsurf</span> - leveraging AI-powered development tools for rapid, high-quality code delivery. Proven track record deploying Azure AI solutions in e-commerce platforms (Paradigm Store) and financial services (Axos Bank).</p>
+                    <p>Strong background in .NET development (C#, ASP.NET, .NET MAUI), Azure cloud services (Azure Functions, App Service, AKS, Cosmos DB), and Azure AI services. Specialized in fraud detection systems, conversational AI, and cloud-native microservices architecture.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience">
+            <h2>Professional Experience</h2>
+            
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Senior .NET & Azure AI Developer Lead</div>
+                    <div class="card-subtitle">Paradigm Store</div>
+                    <div class="card-date">January 2024 - Present | Remote, San Jose, Costa Rica</div>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>Architected and developed Azure AI ecosystem for e-commerce automation using Azure OpenAI and Azure AI Search</li>
+                        <li>Implemented machine learning models using Azure Machine Learning for product recommendation and customer service</li>
+                        <li>Designed RAG (Retrieval-Augmented Generation) architecture using Azure OpenAI and Azure AI Search for intelligent product catalog management</li>
+                        <li>Created AI-powered product catalog management with automated data extraction using Azure Document Intelligence</li>
+                        <li>Developed real-time AI processing systems using Azure Functions and Azure App Service for customer interactions</li>
+                        <li>Integrated Azure Cosmos DB for product catalog and customer data management</li>
+                        <li>Implemented Azure Storage for image and document storage with Azure Blob Storage</li>
+                        <li>Utilized Azure Queues for asynchronous message processing and task orchestration</li>
+                        <li>Deployed microservices architecture using Azure Kubernetes Service (AKS) for scalable containerized applications</li>
+                        <li>Implemented NLP solutions with comprehensive evaluation using BLEU, ROUGE scores, and human evaluation methodologies</li>
+                        <li>Implemented LangChain Memory Manager for context retention and conversation history management across AI agent interactions</li>
+                        <li>Fine-tuned Azure OpenAI models for domain-specific use cases in e-commerce</li>
+                        <li>Optimized prompt engineering techniques for Azure OpenAI to improve response quality and accuracy</li>
+                        <li>Utilized advanced AI-assisted development tools including Cursor AI and Windsurf for rapid development and code optimization</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Senior .NET & AI Developer Lead</div>
+                    <div class="card-subtitle">Axos Bank</div>
+                    <div class="card-date">December 2023 - November 2024 | Remote, United States</div>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>Designed and implemented Azure AI solutions using Azure OpenAI (GPT-4, GPT-4o) for fraud detection and customer service automation</li>
+                        <li>Developed and deployed machine learning models using Azure Machine Learning for fraud detection systems</li>
+                        <li>Created automated customer service solutions using Azure OpenAI with RAG (Retrieval-Augmented Generation) architecture</li>
+                        <li>Implemented Azure AI Search for intelligent document retrieval and knowledge base management</li>
+                        <li>Utilized Azure Document Intelligence for automated document processing and data extraction</li>
+                        <li>Led technical architecture decisions for Azure cloud-native financial applications</li>
+                        <li>Deployed solutions using Azure Functions, Azure App Service, and Azure Kubernetes Service (AKS)</li>
+                        <li>Integrated Azure Cosmos DB for scalable, high-performance data storage and retrieval</li>
+                        <li>Utilized Azure Storage and Azure Queues for distributed system architecture</li>
+                        <li>Collaborated with cross-functional teams to integrate Azure AI solutions into existing .NET applications</li>
+                        <li>Developed cross-platform mobile applications using .NET MAUI for banking operations with Azure backend integration</li>
+                        <li>Implemented NLP solutions with evaluation metrics including BLEU, ROUGE, and human evaluation frameworks</li>
+                        <li>Integrated LangChain Memory Manager (LangChain.NET) for persistent context management and conversation history in .NET applications</li>
+                        <li>Managed AI development using Cursor and Windsurf in Axos Bank's application using Azure DevOps</li>
+                        <li>Achieved significant reduction in bug occurrences and improved overall application performance</li>
+                        <li>Developed AI Fraud Agent for real-time fraud detection</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Sr Xamarin and Maui Developer</div>
+                    <div class="card-subtitle">Magaya Corporation</div>
+                    <div class="card-date">August 2021 - July 2024 | United States</div>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>Led Xamarin.Forms and .NET MAUI development for Flow WMS, enhancing operational efficiency through modern, user-friendly mobile applications</li>
+                        <li>Spearheaded migration to .NET MAUI (Multi-platform App UI) for existing Xamarin.Forms applications, optimizing performance and user experience across iOS and Android platforms</li>
+                        <li>Implemented custom features and functionalities within Flow WMS using Xamarin.Forms and .NET MAUI, tailored to meet specific client requirements</li>
+                        <li>Developed RESTful API integrations with .NET backend services</li>
+                        <li>Coordinated with Autonoma to implement AI-driven end-to-end (E2E) testing solutions using AI automation</li>
+                        <li>Implemented AI-powered testing frameworks for quality assurance and automated test generation</li>
+                        <li>Collaborated closely with UI/UX designers and product managers to refine user interfaces, ensuring intuitive navigation and accessibility</li>
+                        <li>Provided technical leadership and mentorship to junior developers, fostering a collaborative environment</li>
+                        <li>Integrated cloud services and APIs for seamless data synchronization</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Freelance Mobile Developer</div>
+                    <div class="card-subtitle">Various Clients (Intelisoft S.A., YPrime, Proto-brz, Practice Law Institute, BIS S.A.)</div>
+                    <div class="card-date">February 2015 - August 2021 | Remote</div>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>Developed Xamarin.Forms applications for Tributación Directa and Factura Electrónica (electronic invoicing and taxation)</li>
+                        <li>Created UberWash app with Uber-like functionality for car wash scheduling</li>
+                        <li>Built native iOS applications using XCode and Swift for INSURANCE Costa Rica (emergency services)</li>
+                        <li>Developed chat-based iOS applications for Zermat and Teledolar using Telegram Open Source</li>
+                        <li>Created cross-platform applications for clinical studies, book sharing, and product review management</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <h2>Key Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h4>ParadigmStore E-commerce Platform</h4>
+                    <p>Azure AI-powered e-commerce platform with intelligent microservices architecture. Production deployment using Azure OpenAI, Azure AI Search, and Azure Document Intelligence.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Azure OpenAI</span>
+                        <span class="tech-tag">Azure AI Search</span>
+                        <span class="tech-tag">Azure Functions</span>
+                        <span class="tech-tag">Azure Cosmos DB</span>
+                        <span class="tech-tag">AKS</span>
+                        <span class="tech-tag">LangChain.NET</span>
+                        <span class="tech-tag">.NET</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h4>Axos Bank Fraud Detection System</h4>
+                    <p>Azure AI-powered fraud detection using Azure OpenAI (GPT-4, GPT-4o) and Azure Machine Learning. 95.2% accuracy, <600ms response time, serving millions of customers.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Azure OpenAI</span>
+                        <span class="tech-tag">Azure ML</span>
+                        <span class="tech-tag">Azure AI Search</span>
+                        <span class="tech-tag">RAG Architecture</span>
+                        <span class="tech-tag">.NET</span>
+                        <span class="tech-tag">C#</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h4>Azure AI RAG System</h4>
+                    <p>RAG architecture using Azure OpenAI and Azure AI Search for intelligent document retrieval and knowledge base management. Implemented NLP solutions with BLEU, ROUGE evaluation.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Azure OpenAI</span>
+                        <span class="tech-tag">Azure AI Search</span>
+                        <span class="tech-tag">RAG Architecture</span>
+                        <span class="tech-tag">LangChain.NET</span>
+                        <span class="tech-tag">NLP</span>
+                        <span class="tech-tag">BLEU/ROUGE</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h4>Customer Service with Azure AI</h4>
+                    <p>Azure OpenAI-powered customer service with RAG architecture, LangChain Memory Manager, and NLP solutions with comprehensive evaluation metrics.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Azure OpenAI</span>
+                        <span class="tech-tag">LangChain.NET</span>
+                        <span class="tech-tag">RAG Architecture</span>
+                        <span class="tech-tag">NLP</span>
+                        <span class="tech-tag">.NET</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h4>Payment Processing System</h4>
+                    <p>Multi-gateway payment processing with Stripe, BAC Credomatic, PayPal, SINPE integration and automated tax calculation.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Stripe</span>
+                        <span class="tech-tag">BAC Credomatic</span>
+                        <span class="tech-tag">PayPal</span>
+                        <span class="tech-tag">GraphQL</span>
+                        <span class="tech-tag">Flask</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h4>Universal Fraud Detection SDK</h4>
+                    <p>Cross-platform SDK supporting 7 languages (Python, C#, JavaScript, Java, PHP, Ruby, Go) with HTTP interception.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Multi-language</span>
+                        <span class="tech-tag">SDK</span>
+                        <span class="tech-tag">HTTP Interception</span>
+                        <span class="tech-tag">Zero-code Integration</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h4>Azure AI Services</h4>
+                    <ul>
+                        <li>Azure OpenAI (GPT-4, GPT-4o)</li>
+                        <li>Azure AI Search</li>
+                        <li>Azure Document Intelligence</li>
+                        <li>Azure Machine Learning</li>
+                        <li>LangChain (LangChain.NET for .NET integration)</li>
+                        <li>LangChain Memory Manager</li>
+                        <li>RAG Architecture</li>
+                        <li>NLP, Fine-tuning, Prompt Engineering</li>
+                        <li>Model Evaluation (BLEU, ROUGE, Human Evaluation)</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <h4>AI Agent Development</h4>
+                    <ul>
+                        <li>Multi-agent orchestration (12 production agents)</li>
+                        <li>LangChain AgentExecutor, Tools, Chains</li>
+                        <li>Autonomous agent workflows with LangChain</li>
+                        <li>Scientific Method Orchestration (LangChain-based)</li>
+                        <li>Prompt Engineering & Chain Construction</li>
+                        <li>Natural Language Processing (NLP)</li>
+                        <li>Intent Detection (ML-based + LLM fallback)</li>
+                        <li>Conversational AI (WhatsApp integration)</li>
+                        <li>Speech-to-Text (Whisper), Text-to-Speech (TTS)</li>
+                        <li>Voice AI Integration, Audio Processing</li>
+                        <li>Digital Signal Processing (DSP)</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <h4>ML & Data Engineering</h4>
+                    <ul>
+                        <li>XGBoost, Neural Networks, Graph Neural Networks (GNN)</li>
+                        <li>Ensemble Methods, Feature Engineering</li>
+                        <li>Model Training Pipelines, Auto-retraining</li>
+                        <li>Model Drift Detection, Performance Monitoring</li>
+                        <li>Random Forest, SVM, Logistic Regression</li>
+                        <li>BigQuery, PostgreSQL, Redis</li>
+                        <li>Data Pipelines, Real-time Processing</li>
+                        <li>RAG Systems (Qdrant, Embeddings)</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <h4>Programming Languages</h4>
+                    <ul>
+                        <li>C#, .NET (23+ years)</li>
+                        <li>Python (3 years)</li>
+                        <li>JavaScript, TypeScript</li>
+                        <li>Java, SQL</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <h4>APIs & Integration</h4>
+                    <ul>
+                        <li>REST APIs</li>
+                        <li>GraphQL (Magaya Corporation)</li>
+                        <li>Webhooks, WebSocket</li>
+                        <li>Payment Processing (Stripe, BAC, PayPal, SINPE)</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <h4>.NET & Microsoft Technologies</h4>
+                    <ul>
+                        <li>.NET Framework, .NET Core, .NET 6+</li>
+                        <li>ASP.NET, ASP.NET Core</li>
+                        <li>.NET MAUI, Xamarin.Forms</li>
+                        <li>C#</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-card">
+                    <h4>Azure Cloud Services</h4>
+                    <ul>
+                        <li>Azure Functions, Azure App Service</li>
+                        <li>Azure Kubernetes Service (AKS)</li>
+                        <li>Azure Cosmos DB</li>
+                        <li>Azure Storage (Blob, Queue)</li>
+                        <li>Azure Active Directory</li>
+                        <li>Azure DevOps</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-card">
+                    <h4>Cloud & DevOps</h4>
+                    <ul>
+                        <li>Microsoft Azure (Primary)</li>
+                        <li>Docker, Kubernetes</li>
+                        <li>Nginx, Prometheus</li>
+                        <li>AWS, Google Cloud Platform</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <h4>Mobile Development</h4>
+                    <ul>
+                        <li>.NET MAUI, Xamarin.Forms</li>
+                        <li>iOS (XCode, Swift)</li>
+                        <li>Cross-platform Architecture</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <h4>Development Tools</h4>
+                    <ul>
+                        <li>Visual Studio, VS Code</li>
+                        <li>.NET SDK</li>
+                        <li>Cursor AI Code Editor (Early Adopter)</li>
+                        <li>Windsurf AI Development Environment</li>
+                        <li>Git, Docker, Kubernetes</li>
+                        <li>Azure DevOps</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <h4>Automation & Workflow</h4>
+                    <ul>
+                        <li>n8n (Workflow Automation - Magaya)</li>
+                        <li>Make (Low-Code Workflows)</li>
+                        <li>Business Process Automation</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievements Section -->
+        <section id="achievements">
+            <h2>Key Achievements</h2>
+            <div class="achievements-grid">
+                <div class="achievement-card">
+                    <div class="achievement-number">23+</div>
+                    <div class="achievement-label">Years .NET Development</div>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-number">3</div>
+                    <div class="achievement-label">Years Azure AI Specialist</div>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-number">12</div>
+                    <div class="achievement-label">Production AI Agents</div>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-number">99.9%+</div>
+                    <div class="achievement-label">System Uptime</div>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-number">&lt;600ms</div>
+                    <div class="achievement-label">Average Response Time</div>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-number">95.2%</div>
+                    <div class="achievement-label">Fraud Detection Accuracy</div>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-number">500+</div>
+                    <div class="achievement-label">Users Served (ParadigmStore)</div>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-number">Millions</div>
+                    <div class="achievement-label">Users Served (Axos Bank)</div>
+                </div>
+            </div>
+
+            <div style="margin-top: var(--space-xl);">
+                <h3 style="color: var(--accent); margin-bottom: var(--space-md); font-size: var(--font-2xl);">Notable Achievements</h3>
+                <div class="card">
+                    <div class="card-body">
+                        <ul>
+                            <li>Built production fraud detection system serving millions of customers with <600ms response time and 95.2% accuracy</li>
+                            <li>Architected Azure AI-powered e-commerce platform (Paradigm Store) with Azure OpenAI, Azure AI Search, and Azure Document Intelligence</li>
+                            <li>Built fraud detection system using Azure OpenAI and Azure Machine Learning with 95.2% accuracy and <600ms response time</li>
+                            <li>Implemented RAG architecture using Azure OpenAI and Azure AI Search for intelligent document retrieval</li>
+                            <li>Deployed scalable solutions using Azure Functions, App Service, and AKS for cloud-native applications</li>
+                            <li>Mastered Cursor IDE as primary development tool, enabling rapid AI agent development and production deployment</li>
+                            <li>Deployed production e-commerce platform with 2,500+ products, multi-payment processing, and full order lifecycle</li>
+                            <li>Implemented GraphQL API integration at Magaya Corporation for enterprise warehouse management systems</li>
+                            <li>Developed computer vision systems using Gemini 2.5 Pro (face recognition, product search) + LLaVA + YOLO</li>
+                            <li>Created AI agent ecosystem with customer service, payment, marketing performance (LangChain-based), fraud detection, shipping, and order management</li>
+                            <li>Achieved 99.9%+ uptime with production deployment on VPS, Docker, Nginx, and Prometheus monitoring</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CV Download/Upload Section -->
+        <section id="cv">
+            <h2>Resume / CV</h2>
+            <div class="cv-section">
+                <h3 style="color: var(--text-primary); margin-bottom: var(--space-lg); font-size: var(--font-xl);">Download My Resume</h3>
+                <div style="text-align: center; padding: var(--space-lg);">
+                    <a href="Joaquin_Cubero_CV_Azure_Focused.pdf" download="Joaquin_Cubero_CV_Azure_Focused.pdf" class="cv-download-btn">
+                        <i class="fas fa-download"></i> Download CV (English) - PDF
+                    </a>
+                    <p class="cv-info">English Version | Azure & .NET Focused | Updated January 2025</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education & Certifications -->
+        <section id="education">
+            <h2>Education & Certifications</h2>
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Master of Business Administration in AI for Business</div>
+                    <div class="card-subtitle">Universidad Panamericana</div>
+                    <div class="card-date">2023 - Present | Remote</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">BA in Systems Engineering</div>
+                    <div class="card-subtitle">Universidad Internacional De Las Americas (UIA)</div>
+                    <div class="card-date">2007 | San José, Costa Rica</div>
+                </div>
+            </div>
+
+            <div style="margin-top: var(--space-xl);">
+                <h3 style="color: var(--accent); margin-bottom: var(--space-md); font-size: var(--font-2xl);">Certifications & Achievements</h3>
+                <div class="card">
+                    <div class="card-body">
+                        <ul>
+                            <li>Microsoft Azure AI Engineer Associate (In Progress)</li>
+                            <li>Microsoft Azure Developer Associate (In Progress)</li>
+                            <li>Master of Cursor IDE - Primary development environment, expert in AI-powered coding assistance and rapid development</li>
+                            <li>Windsurf - Next-generation IDE expertise</li>
+                            <li>AI Spark Diploma - Coforge University</li>
+                            <li>Information Security and Privacy Diploma - Coforge University</li>
+                            <li>Diploma in English Language - British Institute</li>
+                            <li>Google Cloud AI/ML Specialization (In Progress)</li>
+                            <li>Advanced Python Programming Certification</li>
+                            <li>Diploma in Precision Mechanics - INA (Instituto Nacional de Aprendizaje)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2>Get In Touch</h2>
+            <div class="card" style="text-align: center; padding: var(--space-2xl);">
+                <p style="font-size: var(--font-xl); margin-bottom: var(--space-lg); color: var(--text-secondary);">
+                    I'm always open to discussing new opportunities, interesting projects, or collaboration ideas.
+                </p>
+                <div style="display: flex; justify-content: center; gap: var(--space-xl); flex-wrap: wrap; margin-bottom: var(--space-xl);">
+                    <a href="mailto:jcubero@gmail.com" style="color: var(--accent); text-decoration: none; font-weight: 600; font-size: var(--font-lg);">
+                        <i class="fas fa-envelope"></i> jcubero@gmail.com
+                    </a>
+                    <a href="https://www.linkedin.com/in/joaquin-cubero/" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 600; font-size: var(--font-lg);">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
+                    <a href="https://github.com/jcuberogit" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 600; font-size: var(--font-lg);">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <span style="color: var(--text-secondary); font-weight: 600; font-size: var(--font-lg);">
+                        <i class="fas fa-phone"></i> +506 8689-5526
+                    </span>
+                </div>
+            </div>
+            
+            <!-- Calendly Integration -->
+            <div id="interview" class="card" style="margin-top: var(--space-xl); margin-bottom: var(--space-md);">
+                <h3 style="color: var(--text-primary); margin-bottom: var(--space-md); font-size: var(--font-xl); text-align: center;">
+                    <i class="fas fa-calendar-alt" style="color: var(--accent); margin-right: var(--space-xs);"></i>
+                    Schedule an Interview
+                </h3>
+                <p style="text-align: center; color: var(--text-secondary); margin-bottom: var(--space-sm);">
+                    Book a time that works for you. Available <strong style="color: var(--accent);">Monday - Friday, 10:00 AM - 4:00 PM</strong> (CST)
+                </p>
+                <p style="text-align: center; color: var(--text-muted); font-size: var(--font-sm); margin-bottom: var(--space-lg);">
+                    <i class="fas fa-sync-alt" style="margin-right: var(--space-xs);"></i>
+                    Automatically synced with my Google Calendar and Apple Calendar - only available times are shown
+                </p>
+                <!-- Calendly inline widget -->
+                <div class="calendly-inline-widget" 
+                     data-url="https://calendly.com/jcubero/new-meeting" 
+                     style="min-width:320px;height:700px;border-radius: var(--radius-lg); overflow: hidden;">
+                </div>
+                <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <a href="https://www.pinterest.com/joaquincubero/" target="_blank" rel="noopener noreferrer" class="brand-link">
+                <img src="BrandJoaquin.png" alt="Joaquin Cubero Brand" class="brand-image">
+            </a>
+            <div class="footer-text">
+                <p>&copy; 2025 Joaquin Cubero. All rights reserved.</p>
+                <p style="margin-top: var(--space-xs); opacity: 0.8;">Senior .NET & AI Developer Lead | Azure AI Specialist</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Interview Me Button -->
+    <a href="#interview" class="floating-interview-btn">
+        <i class="fas fa-calendar-alt"></i> Interview Me
+    </a>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Hide header on scroll down, show on scroll up
+        let lastScroll = 0;
+        const header = document.getElementById('main-header');
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll <= 0) {
+                header.classList.remove('hidden');
+                return;
+            }
+            
+            if (currentScroll > lastScroll && currentScroll > 100) {
+                // Scrolling down
+                header.classList.add('hidden');
+            } else {
+                // Scrolling up
+                header.classList.remove('hidden');
+            }
+            
+            lastScroll = currentScroll;
+            
+            // Highlight active nav item on scroll
+            let current = '';
+            const sections = document.querySelectorAll('section[id]');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('nav a').forEach(link => {
+                link.style.color = '';
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.style.color = 'var(--accent)';
+                    link.style.background = 'var(--accent-light)';
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>
+<!-- Updated: Tue Nov 11 13:58:56 CST 2025 -->
