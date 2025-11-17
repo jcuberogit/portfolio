@@ -1086,26 +1086,65 @@
                         <i class="fas fa-download"></i> Download CV (English) - PDF
                     </a>
                     <script>
-                        document.getElementById('cv-download-link').addEventListener('click', function(e) {
-                            e.preventDefault();
-                            fetch('Joaquin_Cubero_CV.pdf')
-                                .then(response => response.blob())
-                                .then(blob => {
-                                    const url = window.URL.createObjectURL(blob);
-                                    const link = document.createElement('a');
-                                    link.href = url;
-                                    link.download = 'Joaquin_Cubero_CV.pdf';
-                                    document.body.appendChild(link);
-                                    link.click();
-                                    document.body.removeChild(link);
-                                    window.URL.revokeObjectURL(url);
-                                })
-                                .catch(error => {
-                                    console.error('Error downloading CV:', error);
-                                    // Fallback to direct link
-                                    window.location.href = 'Joaquin_Cubero_CV.pdf';
+                        (function() {
+                            const downloadLink = document.getElementById('cv-download-link');
+                            if (downloadLink) {
+                                downloadLink.addEventListener('click', function(e) {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    
+                                    const fileName = 'Joaquin_Cubero_CV.pdf';
+                                    const fileUrl = 'Joaquin_Cubero_CV.pdf';
+                                    
+                                    fetch(fileUrl, {
+                                        method: 'GET',
+                                        headers: {
+                                            'Content-Type': 'application/pdf',
+                                        },
+                                    })
+                                    .then(response => {
+                                        if (!response.ok) {
+                                            throw new Error('Network response was not ok');
+                                        }
+                                        return response.blob();
+                                    })
+                                    .then(blob => {
+                                        // Create blob URL
+                                        const blobUrl = window.URL.createObjectURL(blob);
+                                        
+                                        // Create download link
+                                        const link = document.createElement('a');
+                                        link.style.display = 'none';
+                                        link.href = blobUrl;
+                                        link.download = fileName;
+                                        link.setAttribute('download', fileName);
+                                        
+                                        // Append to body, click, and remove
+                                        document.body.appendChild(link);
+                                        link.click();
+                                        
+                                        // Cleanup
+                                        setTimeout(() => {
+                                            document.body.removeChild(link);
+                                            window.URL.revokeObjectURL(blobUrl);
+                                        }, 100);
+                                    })
+                                    .catch(error => {
+                                        console.error('Error downloading CV:', error);
+                                        // Fallback: try direct download
+                                        const fallbackLink = document.createElement('a');
+                                        fallbackLink.href = fileUrl;
+                                        fallbackLink.download = fileName;
+                                        fallbackLink.style.display = 'none';
+                                        document.body.appendChild(fallbackLink);
+                                        fallbackLink.click();
+                                        setTimeout(() => {
+                                            document.body.removeChild(fallbackLink);
+                                        }, 100);
+                                    });
                                 });
-                        });
+                            }
+                        })();
                     </script>
                     <p class="cv-info">English Version | Updated January 2025</p>
                 </div>
