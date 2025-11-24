@@ -1065,34 +1065,8 @@
             });
         });
         
-        // Enhanced PDF download handler
-        (function() {
-            const cvLink = document.getElementById('cv-download-link');
-            if (cvLink) {
-                cvLink.addEventListener('click', function(e) {
-                    // Try native download first, but also prepare blob fallback
-                    const url = this.getAttribute('href');
-                    const filename = this.getAttribute('download') || 'Joaquin_Cubero_CV_2025.pdf';
-                    
-                    // Check if download attribute is supported
-                    if (this.download === undefined) {
-                        // Browser doesn't support download attribute, use blob
-                        e.preventDefault();
-                        fetch(url)
-                            .then(response => response.blob())
-                            .then(blob => {
-                                const blobUrl = URL.createObjectURL(new Blob([blob], { type: 'application/pdf' }));
-                                const a = document.createElement('a');
-                                a.href = blobUrl;
-                                a.download = filename;
-                                a.click();
-                                URL.revokeObjectURL(blobUrl);
-                            });
-                    }
-                    // If download is supported, let it work naturally
-                });
-            }
-        })();
+        // Simple PDF download - let browser handle it naturally
+        // The download attribute should work for same-origin requests
 
     </script>
 </body>
