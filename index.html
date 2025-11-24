@@ -1061,6 +1061,31 @@
                 }
             });
         });
+        
+        // Force PDF download with correct MIME type
+        document.getElementById('cv-download-link')?.addEventListener('click', function(e) {
+            e.preventDefault();
+            const url = this.getAttribute('href');
+            const filename = this.getAttribute('download') || 'Joaquin_Cubero_CV_2025.pdf';
+            
+            fetch(url)
+                .then(response => response.blob())
+                .then(blob => {
+                    const blobUrl = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = blobUrl;
+                    a.download = filename;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    window.URL.revokeObjectURL(blobUrl);
+                })
+                .catch(error => {
+                    console.error('Error downloading PDF:', error);
+                    // Fallback to direct link
+                    window.open(url, '_blank');
+                });
+        });
 
     </script>
 </body>
