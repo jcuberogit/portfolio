@@ -928,7 +928,7 @@
             <div class="cv-section">
                 <h3 style="color: var(--text-primary); margin-bottom: var(--space-lg); font-size: var(--font-xl);">Download My Resume</h3>
                 <div style="text-align: center; padding: var(--space-lg);">
-                    <a href="https://jcuberogit.github.io/portfolio/Joaquin_Cubero_CV_2025.pdf" download="Joaquin_Cubero_CV_2025.pdf" type="application/pdf" class="cv-download-btn" id="cv-download-link">
+                    <a href="Joaquin_Cubero_CV_2025.pdf" download="Joaquin_Cubero_CV_2025.pdf" class="cv-download-btn" id="cv-download-link">
                         <i class="fas fa-download"></i> Download CV (English) - PDF
                     </a>
                     <p class="cv-info">English Version | Updated January 2025</p>
@@ -1062,50 +1062,61 @@
             });
         });
         
-        // Force PDF download with correct MIME type
-        document.addEventListener('DOMContentLoaded', function() {
+        // Force PDF download with correct MIME type and filename
+        (function() {
             const cvLink = document.getElementById('cv-download-link');
             if (cvLink) {
                 cvLink.addEventListener('click', function(e) {
                     e.preventDefault();
-                    const url = 'https://jcuberogit.github.io/portfolio/Joaquin_Cubero_CV_2025.pdf';
+                    e.stopPropagation();
+                    
+                    const url = this.getAttribute('href');
                     const filename = 'Joaquin_Cubero_CV_2025.pdf';
                     
-                    fetch(url, {
-                        method: 'GET',
-                        headers: {
-                            'Content-Type': 'application/pdf',
-                        },
-                    })
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Network response was not ok');
-                        }
-                        return response.blob();
-                    })
-                    .then(blob => {
-                        // Ensure blob is PDF type
-                        const pdfBlob = new Blob([blob], { type: 'application/pdf' });
-                        const blobUrl = window.URL.createObjectURL(pdfBlob);
-                        const a = document.createElement('a');
-                        a.style.display = 'none';
-                        a.href = blobUrl;
-                        a.download = filename;
-                        document.body.appendChild(a);
-                        a.click();
-                        setTimeout(() => {
-                            document.body.removeChild(a);
-                            window.URL.revokeObjectURL(blobUrl);
-                        }, 100);
-                    })
-                    .catch(error => {
-                        console.error('Error downloading PDF:', error);
-                        // Fallback: open in new tab
-                        window.open(url, '_blank');
-                    });
+                    // Use fetch to get the file as blob
+                    fetch(url)
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('HTTP error! status: ' + response.status);
+                            }
+                            return response.blob();
+                        })
+                        .then(blob => {
+                            // Create a new blob with explicit PDF MIME type
+                            const pdfBlob = blob.type === 'application/pdf' 
+                                ? blob 
+                                : new Blob([blob], { type: 'application/pdf' });
+                            
+                            // Create download link
+                            const blobUrl = window.URL.createObjectURL(pdfBlob);
+                            const downloadLink = document.createElement('a');
+                            downloadLink.href = blobUrl;
+                            downloadLink.download = filename;
+                            downloadLink.style.display = 'none';
+                            
+                            // Trigger download
+                            document.body.appendChild(downloadLink);
+                            downloadLink.click();
+                            
+                            // Cleanup
+                            setTimeout(() => {
+                                document.body.removeChild(downloadLink);
+                                window.URL.revokeObjectURL(blobUrl);
+                            }, 200);
+                        })
+                        .catch(error => {
+                            console.error('Download error:', error);
+                            // Fallback: try direct download attribute
+                            const fallbackLink = document.createElement('a');
+                            fallbackLink.href = url;
+                            fallbackLink.download = filename;
+                            fallbackLink.click();
+                        });
+                    
+                    return false;
                 });
             }
-        });
+        })();
 
     </script>
 </body>
