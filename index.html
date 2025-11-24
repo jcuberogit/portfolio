@@ -1063,28 +1063,48 @@
         });
         
         // Force PDF download with correct MIME type
-        document.getElementById('cv-download-link')?.addEventListener('click', function(e) {
-            e.preventDefault();
-            const url = this.getAttribute('href');
-            const filename = this.getAttribute('download') || 'Joaquin_Cubero_CV_2025.pdf';
-            
-            fetch(url)
-                .then(response => response.blob())
-                .then(blob => {
-                    const blobUrl = window.URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.href = blobUrl;
-                    a.download = filename;
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
-                    window.URL.revokeObjectURL(blobUrl);
-                })
-                .catch(error => {
-                    console.error('Error downloading PDF:', error);
-                    // Fallback to direct link
-                    window.open(url, '_blank');
+        document.addEventListener('DOMContentLoaded', function() {
+            const cvLink = document.getElementById('cv-download-link');
+            if (cvLink) {
+                cvLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const url = 'https://jcuberogit.github.io/portfolio/Joaquin_Cubero_CV_2025.pdf';
+                    const filename = 'Joaquin_Cubero_CV_2025.pdf';
+                    
+                    fetch(url, {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/pdf',
+                        },
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.blob();
+                    })
+                    .then(blob => {
+                        // Ensure blob is PDF type
+                        const pdfBlob = new Blob([blob], { type: 'application/pdf' });
+                        const blobUrl = window.URL.createObjectURL(pdfBlob);
+                        const a = document.createElement('a');
+                        a.style.display = 'none';
+                        a.href = blobUrl;
+                        a.download = filename;
+                        document.body.appendChild(a);
+                        a.click();
+                        setTimeout(() => {
+                            document.body.removeChild(a);
+                            window.URL.revokeObjectURL(blobUrl);
+                        }, 100);
+                    })
+                    .catch(error => {
+                        console.error('Error downloading PDF:', error);
+                        // Fallback: open in new tab
+                        window.open(url, '_blank');
+                    });
                 });
+            }
         });
 
     </script>
