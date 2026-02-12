@@ -3,1072 +3,722 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Joaquin Cubero - AI Agent Developer Portfolio</title>
+    <title>Joaquin Cubero - AI Products & Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* ============================================
-           PORTAL UI DESIGN SYSTEM
-           Based on paradigmstore.admin.dashboard
-           ============================================ */
-        
         :root {
-            /* Background Colors */
-            --bg-primary: #0b1220;
-            --bg-secondary: #121a2b;
-            --bg-elevated: #1a2332;
-            --bg-hover: #243447;
-            
-            /* Borders */
-            --border-color: rgba(122, 183, 255, 0.15);
-            --border-hover: rgba(122, 183, 255, 0.3);
-            
-            /* Text Colors */
+            --bg-primary: #0a0f1a;
+            --bg-secondary: #111827;
+            --bg-elevated: #1f2937;
+            --bg-card: linear-gradient(135deg, #1a1f2e 0%, #0d1117 100%);
+            --border-color: rgba(139, 92, 246, 0.2);
+            --border-hover: rgba(139, 92, 246, 0.5);
             --text-primary: #ffffff;
-            --text-secondary: #a0b4d0;
-            --text-muted: #6b7f99;
-            
-            /* Brand Colors */
-            --accent: #7ab7ff;
-            --accent-hover: #8fc5ff;
-            --accent-light: rgba(122, 183, 255, 0.1);
-            
-            /* Spacing */
+            --text-secondary: #9ca3af;
+            --text-muted: #6b7280;
+            --accent: #8b5cf6;
+            --accent-hover: #a78bfa;
+            --accent-green: #10b981;
+            --accent-blue: #3b82f6;
+            --accent-pink: #ec4899;
+            --accent-orange: #f97316;
+            --gradient-primary: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+            --gradient-blue: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+            --gradient-green: linear-gradient(135deg, #10b981 0%, #34d399 100%);
             --space-xs: 0.5rem;
             --space-sm: 1rem;
             --space-md: 1.5rem;
             --space-lg: 2rem;
             --space-xl: 3rem;
             --space-2xl: 4rem;
-            --space-3xl: 6rem;
-            
-            /* Typography */
-            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            --font-xs: 0.75rem;
-            --font-sm: 0.875rem;
-            --font-base: 1rem;
-            --font-lg: 1.125rem;
-            --font-xl: 1.25rem;
-            --font-2xl: 1.5rem;
-            --font-3xl: 2rem;
-            --font-4xl: 2.5rem;
-            
-            /* Line Heights */
-            --leading-tight: 1.2;
-            --leading-normal: 1.5;
-            --leading-relaxed: 1.75;
-            
-            /* Border Radius */
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             --radius-sm: 8px;
             --radius-md: 12px;
             --radius-lg: 16px;
             --radius-xl: 24px;
-            
-            /* Shadows */
-            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
-            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.15);
-            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.2);
-            
-            /* Transitions */
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
             font-family: var(--font-family);
             background: var(--bg-primary);
             color: var(--text-primary);
-            line-height: var(--leading-normal);
+            line-height: 1.6;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
-        
-        /* Header */
-        header {
-            background: rgba(11, 18, 32, 0.95);
-            backdrop-filter: blur(20px) saturate(180%);
-            border-bottom: 1px solid var(--border-color);
-            padding: 10px var(--space-xl);
-            text-align: left;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        
-        .header-content {
-            max-width: 1400px;
-            margin: 0 auto;
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 var(--space-lg); }
+
+        /* Hero Section */
+        .hero {
+            min-height: 60vh;
             display: flex;
             align-items: center;
-            gap: var(--space-lg);
-            justify-content: flex-start;
-            padding: 0 var(--space-xl);
-            position: relative;
-        }
-        
-        .header-text {
+            justify-content: center;
             text-align: center;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: auto;
+            padding: var(--space-2xl) 0;
+            background: radial-gradient(ellipse at top, rgba(139, 92, 246, 0.15) 0%, transparent 50%);
         }
-        
-        .profile-image {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            border: 3px solid var(--accent);
-            margin: 0 auto var(--space-md);
-            display: block;
-            object-fit: cover;
-            box-shadow: 0 8px 32px rgba(122, 183, 255, 0.3);
-        }
-        
-        .brand-image {
-            max-width: 100px;
-            width: 100px;
-            height: auto;
-            border-radius: var(--radius-lg);
-            box-shadow: 0 8px 32px rgba(122, 183, 255, 0.2);
-            transition: var(--transition);
-            flex-shrink: 0;
-        }
-        
-        .brand-image:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 48px rgba(122, 183, 255, 0.3);
-        }
-        
-        header h1 {
-            font-size: var(--font-4xl);
-            font-weight: 700;
-            margin-bottom: var(--space-xs);
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-align: center;
+            margin-bottom: var(--space-sm);
         }
-        
-        header p {
-            font-size: var(--font-lg);
+
+        .hero .subtitle {
+            font-size: 1.5rem;
             color: var(--text-secondary);
-            font-weight: 500;
-            text-align: center;
-            margin: 0;
-        }
-        
-        /* Navigation */
-        nav {
-            background: transparent;
-            padding: var(--space-sm) 0 0 0;
-            border-top: 1px solid var(--border-color);
-            margin-top: var(--space-md);
-            z-index: 999;
-        }
-        
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: var(--space-lg);
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 var(--space-xl);
-        }
-        
-        nav a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: var(--font-base);
-            padding: var(--space-xs) var(--space-sm);
-            border-radius: var(--radius-sm);
-            border: 1px solid var(--border-color);
-            transition: var(--transition);
-            display: inline-block;
-        }
-        
-        nav a:hover {
-            color: var(--accent);
-            background: var(--accent-light);
-            border-color: var(--border-hover);
-        }
-        
-        /* Container */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 var(--space-xl) var(--space-xl) var(--space-xl);
-        }
-        
-        .container > section:first-child {
-            padding-top: var(--space-sm);
-        }
-        
-        /* Section */
-        section {
-            margin: var(--space-3xl) 0;
-        }
-        
-        section#about {
-            margin-top: 0;
-            margin-bottom: var(--space-3xl);
-            padding-top: var(--space-sm);
-        }
-        
-        section h2 {
-            color: var(--text-primary);
-            font-size: var(--font-3xl);
-            font-weight: 700;
-            margin-bottom: var(--space-xl);
-            padding-bottom: var(--space-md);
-            border-bottom: 2px solid var(--border-color);
-        }
-        
-        /* Card Styles - Matching Dashboard */
-        .card {
-            background: var(--bg-elevated);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg);
-            padding: var(--space-lg);
-            transition: var(--transition);
             margin-bottom: var(--space-lg);
         }
-        
-        .card:hover {
-            border-color: var(--border-hover);
-            box-shadow: var(--shadow-md);
-            transform: translateY(-2px);
-        }
-        
-        .card-header {
-            margin-bottom: var(--space-md);
-        }
-        
-        .card-title {
-            font-size: var(--font-xl);
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: var(--space-xs);
-        }
-        
-        .card-subtitle {
-            font-size: var(--font-base);
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-        
-        .card-date {
+
+        .hero .tagline {
+            font-size: 1.1rem;
             color: var(--text-muted);
-            font-size: var(--font-sm);
-            font-style: italic;
-            margin-bottom: var(--space-sm);
+            max-width: 700px;
+            margin: 0 auto var(--space-xl);
         }
-        
-        .card-body {
-            color: var(--text-secondary);
-            line-height: var(--leading-relaxed);
+
+        .hero-buttons {
+            display: flex;
+            gap: var(--space-sm);
+            justify-content: center;
+            flex-wrap: wrap;
         }
-        
-        .card-body ul {
-            list-style: none;
-            padding-left: 0;
-        }
-        
-        .card-body li {
-            padding: var(--space-xs) 0;
-            padding-left: var(--space-lg);
-            position: relative;
-            color: var(--text-secondary);
-        }
-        
-        .card-body li:before {
-            content: "▹";
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-            font-weight: bold;
-        }
-        
-        /* About Section */
-        .about {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: var(--space-xl);
-            align-items: start;
-        }
-        
-        .contact-card {
-            background: var(--bg-elevated);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg);
-            padding: var(--space-lg);
-        }
-        
-        .contact-card h3 {
-            color: var(--text-primary);
-            font-size: var(--font-xl);
-            margin-bottom: var(--space-md);
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: var(--radius-md);
             font-weight: 600;
-        }
-        
-        .contact-card p {
-            margin: var(--space-sm) 0;
-            color: var(--text-secondary);
-        }
-        
-        .contact-card a {
-            color: var(--accent);
             text-decoration: none;
-            transition: var(--transition);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
         }
-        
-        .contact-card a:hover {
-            color: var(--accent-hover);
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
         }
-        
-        .about-text {
-            font-size: var(--font-lg);
-            line-height: var(--leading-relaxed);
-            color: var(--text-secondary);
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(139, 92, 246, 0.4);
         }
-        
-        .highlight {
+
+        .btn-outline {
+            background: transparent;
             color: var(--accent);
-            font-weight: 600;
+            border: 2px solid var(--accent);
         }
-        
-        /* Projects Grid */
-        .projects-grid {
+
+        .btn-outline:hover {
+            background: var(--accent);
+            color: white;
+        }
+
+        /* Section Styles */
+        section {
+            padding: var(--space-2xl) 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-title span {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Products Grid */
+        .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: var(--space-lg);
         }
-        
-        .project-card {
-            background: var(--bg-elevated);
+
+        .product-card {
+            background: var(--bg-card);
             border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg);
+            border-radius: var(--radius-xl);
             padding: var(--space-lg);
-            transition: var(--transition);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
-        
-        .project-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--card-accent, var(--gradient-primary));
         }
-        
-        .project-card h4 {
-            color: var(--text-primary);
-            font-size: var(--font-xl);
-            font-weight: 600;
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--border-hover);
+            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.2);
+        }
+
+        .product-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: var(--space-md);
+        }
+
+        .product-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: var(--space-xs);
+        }
+
+        .product-card .product-type {
+            font-size: 0.85rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
             margin-bottom: var(--space-sm);
         }
-        
-        .project-card p {
+
+        .product-card p {
             color: var(--text-secondary);
             margin-bottom: var(--space-md);
-            line-height: var(--leading-relaxed);
+            line-height: 1.7;
         }
-        
+
         .tech-stack {
             display: flex;
             flex-wrap: wrap;
-            gap: var(--space-xs);
-            margin-top: var(--space-md);
-        }
-        
-        .tech-tag {
-            background: var(--accent-light);
-            border: 1px solid var(--border-color);
-            color: var(--accent);
-            padding: var(--space-xs) var(--space-sm);
-            border-radius: var(--radius-sm);
-            font-size: var(--font-xs);
-            font-weight: 500;
-        }
-        
-        /* Skills Grid */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: var(--space-lg);
-        }
-        
-        .skill-card {
-            background: var(--bg-elevated);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg);
-            padding: var(--space-lg);
-        }
-        
-        .skill-card h4 {
-            color: var(--accent);
-            font-size: var(--font-xl);
-            font-weight: 600;
+            gap: 8px;
             margin-bottom: var(--space-md);
         }
-        
-        .skill-card ul {
-            list-style: none;
-            padding-left: 0;
-        }
-        
-        .skill-card li {
-            padding: var(--space-xs) 0;
-            padding-left: var(--space-md);
-            position: relative;
-            color: var(--text-secondary);
-        }
-        
-        .skill-card li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
+
+        .tech-tag {
+            background: rgba(139, 92, 246, 0.1);
             color: var(--accent);
-            font-weight: bold;
-        }
-        
-        /* Achievements Grid */
-        .achievements-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: var(--space-lg);
-        }
-        
-        .achievement-card {
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
-            border-radius: var(--radius-lg);
-            padding: var(--space-lg);
-            text-align: center;
-            box-shadow: var(--shadow-md);
-        }
-        
-        .achievement-number {
-            font-size: var(--font-4xl);
-            font-weight: 700;
-            color: #000000;
-            margin-bottom: var(--space-xs);
-        }
-        
-        .achievement-label {
-            color: rgba(0, 0, 0, 0.8);
-            font-size: var(--font-base);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
             font-weight: 500;
         }
-        
-        /* CV Download Section */
-        .cv-section {
-            background: var(--bg-elevated);
+
+        .product-links {
+            display: flex;
+            gap: var(--space-sm);
+            flex-wrap: wrap;
+        }
+
+        .product-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .product-link:hover {
+            color: var(--accent);
+        }
+
+        .live-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--accent-green);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .live-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--accent-green);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-md);
+        }
+
+        .skill-category {
+            background: var(--bg-secondary);
             border: 1px solid var(--border-color);
             border-radius: var(--radius-lg);
-            padding: var(--space-xl);
-            margin: var(--space-xl) 0;
+            padding: var(--space-md);
         }
-        
-        .cv-download-btn {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
-            color: #000000;
-            padding: var(--space-md) var(--space-xl);
-            border-radius: var(--radius-md);
+
+        .skill-category h4 {
+            color: var(--accent);
+            margin-bottom: var(--space-sm);
+            font-size: 1rem;
+        }
+
+        .skill-category ul {
+            list-style: none;
+        }
+
+        .skill-category li {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            padding: 4px 0;
+        }
+
+        /* Stats Section */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: var(--space-md);
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: var(--space-md);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            text-align: center;
+            padding: var(--space-2xl);
+            background: var(--bg-secondary);
+            border-radius: var(--radius-xl);
+            margin: var(--space-2xl) 0;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-xl);
+            flex-wrap: wrap;
+            margin-top: var(--space-lg);
+        }
+
+        .contact-link {
+            color: var(--text-secondary);
             text-decoration: none;
-            font-weight: 600;
-            font-size: var(--font-lg);
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-            margin: var(--space-sm);
+            font-size: 1.1rem;
+            transition: color 0.2s;
         }
-        
-        .cv-download-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
+
+        .contact-link:hover {
+            color: var(--accent);
         }
-        
-        .cv-info {
-            color: var(--text-muted);
-            font-size: var(--font-sm);
-            margin-top: var(--space-sm);
+
+        .contact-link i {
+            margin-right: 8px;
         }
-        
+
         /* Footer */
         footer {
-            background: var(--bg-secondary);
-            border-top: 1px solid var(--border-color);
-            color: var(--text-secondary);
             text-align: center;
-            padding: var(--space-xl) 0;
-            margin-top: var(--space-3xl);
+            padding: var(--space-xl);
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-color);
         }
-        
+
         /* Responsive */
         @media (max-width: 768px) {
-            header h1 {
-                font-size: var(--font-3xl);
-            }
-            
-            .about {
-                grid-template-columns: 1fr;
-            }
-            
-            nav ul {
-                flex-direction: column;
-                gap: var(--space-sm);
-            }
-            
-            .projects-grid,
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
+            .hero h1 { font-size: 2.5rem; }
+            .hero .subtitle { font-size: 1.2rem; }
+            .products-grid { grid-template-columns: 1fr; }
+            .section-title { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <img src="BrandJoaquin.png" alt="Joaquin Cubero Brand" class="brand-image">
-            <div class="header-text">
-                <h1>Joaquin Cubero</h1>
-                <p>AI Agent Developer | System Engineer | Full-Stack Developer</p>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Joaquin Cubero</h1>
+            <p class="subtitle">AI Agent Architect & Full-Stack Developer</p>
+            <p class="tagline">
+                Building production AI systems that solve real problems. 25 years of software development, 
+                3 years specializing in AI agents, LLMs, and intelligent automation.
+            </p>
+            <div class="hero-buttons">
+                <a href="#products" class="btn btn-primary">
+                    <i class="fas fa-rocket"></i> View Products
+                </a>
+                <a href="Joaquin_Cubero_CV_2025.pdf" download class="btn btn-outline">
+                    <i class="fas fa-download"></i> Download CV
+                </a>
+                <a href="https://calendly.com/jcubero/new-meeting" target="_blank" class="btn btn-outline">
+                    <i class="fas fa-calendar"></i> Schedule Call
+                </a>
             </div>
         </div>
-        <nav>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#achievements">Achievements</a></li>
-                <li><a href="#cv">CV</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#interview">Interview Me</a></li>
-            </ul>
-        </nav>
-    </header>
+    </section>
 
-    <div class="container">
-        <!-- About Section -->
-        <section id="about">
-            <h2>About Me</h2>
-            <div class="about">
-                <div class="contact-card">
-                    <img src="WebProfileJoaquin.png" alt="Joaquin Cubero" style="width: 100%; max-width: 200px; border-radius: var(--radius-lg); margin: 0 auto var(--space-md); display: block;">
-                    <h3>Contact Information</h3>
-                    <p><strong>Email:</strong> <a href="mailto:jcubero@gmail.com">jcubero@gmail.com</a></p>
-                    <p><strong>Phone:</strong> +506 8689-5526</p>
-                    <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/joaquin-cubero/" target="_blank">linkedin.com/in/joaquin-cubero</a></p>
-                    <p><strong>GitHub:</strong> <a href="https://github.com/jcuberogit" target="_blank">github.com/jcuberogit</a></p>
-                    <p><strong>Location:</strong> Jaco, Costa Rica</p>
-                    <p><strong>Portfolio:</strong> <a href="https://jcuberogit.github.io/portfolio/index.html" target="_blank">jcuberogit.github.io/portfolio</a></p>
-                    <p><strong>Languages:</strong> Spanish (Native) | English (Fluent) | French (Intermediate)</p>
-                </div>
-                <div class="about-text">
-                    <p>System Engineer with <span class="highlight">4 years of specialized experience in AI architecture, agent orchestration, and cloud-native AI systems</span>, and <span class="highlight">25 years total in software engineering area</span>, mostly as fullstack developer. Currently pursuing <span class="highlight">MBA in AI For Business at Panamerican Business School</span>. Expert in building production-grade AI systems using <span class="highlight">Azure AI solutions (Azure OpenAI, Azure Machine Learning, Azure AI Search)</span> and <span class="highlight">LangChain orchestration</span>, with deep expertise in Python/APIs, data pipelines, RAG (Retrieval Augmented Generation), and LangChain/Langfuse workflows.</p>
-                    <p>Proven track record deploying AI solutions in e-commerce platforms (ParadigmStore) and financial services (Axos Bank). Currently leading AI agent development at Paradigm Store, with previous experience in Azure AI solutions at Axos Bank and AI engineering at Magaya Corporation.</p>
-                    <p>Strong background in full-stack development, API integration (REST, GraphQL), and modern AI frameworks. Specialized in fraud detection systems, conversational AI, computer vision, and autonomous agent architectures. Expert in <span class="highlight">Cursor AI</span> and <span class="highlight">Windsurf Power User</span> for AI-powered development.</p>
-                </div>
+    <!-- Stats Section -->
+    <section class="container">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">25</div>
+                <div class="stat-label">Years Experience</div>
             </div>
-        </section>
-
-        <!-- Experience Section -->
-        <section id="experience">
-            <h2>Professional Experience</h2>
-            
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-title">AI Agent Developer</div>
-                    <div class="card-subtitle">Paradigm Store</div>
-                    <div class="card-date">January 2024 - Present | Remote, Jaco, Costa Rica</div>
-                </div>
-                <div class="card-body">
-                    <ul>
-                        <li>Architected and deployed production multi-tenant e-commerce AI platform with 12 specialized AI agents serving real users</li>
-                        <li>Built LangChainOrchestrator for agent workflow orchestration using AgentExecutor, tools, and prompt chains (production code)</li>
-                        <li>Architected Marketing Performance Agent with LangChain orchestration, LangChain Memory for conversation history, and scientific method workflows for autonomous marketing optimization</li>
-                        <li>Implemented Data Science solutions using Google BigQuery for customer behavior analysis, profile creation, and data-driven marketing targeting</li>
-                        <li>Built customer profiling and segmentation systems using BigQuery analytics, processing large-scale customer data for targeted marketing campaigns</li>
-                        <li>Integrated Salesforce CRM for customer data management and marketing automation workflows</li>
-                        <li>Developed multi-modal computer vision: Gemini 2.5 Pro (face recognition, product image search, layout extraction) + LLaVA (self-hosted) + YOLO fallback</li>
-                        <li>Created AI-powered customer service agent with natural language processing, WhatsApp integration, and intent detection (Gemini 2.5 Pro)</li>
-                        <li>Built payment processing agent with Stripe, BAC Credomatic, PayPal, SINPE integration and 13% IVA tax calculation</li>
-                        <li>Implemented product catalog agent with intelligent search, admin dashboard, and shopping carousel (2,500+ products)</li>
-                        <li>Built marketing automation agent with BigQuery analytics, Mailchimp integration, and 50K+ contact campaigns</li>
-                        <li>Built order management, shipping, delivery, SEO, CRM, tax, and image processing agents with full e-commerce lifecycle</li>
-                        <li>Deployed production system on DigitalOcean/Contabo VPS with 99.9%+ uptime, Docker, Nginx, Prometheus monitoring</li>
-                        <li>Integrated REST and GraphQL APIs for multi-system orchestration (payment, CRM, inventory, order management)</li>
-                    </ul>
-                </div>
+            <div class="stat-item">
+                <div class="stat-number">5</div>
+                <div class="stat-label">Live Products</div>
             </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-title">AI Agent Developer</div>
-                    <div class="card-subtitle">Axos Bank</div>
-                    <div class="card-date">December 2024 - October 2025 | Remote, United States</div>
-                </div>
-                <div class="card-body">
-                    <ul>
-                        <li>Designed and implemented Azure AI solutions using Azure OpenAI (GPT-4, GPT-4o) for fraud detection and customer service automation</li>
-                        <li>Developed and deployed machine learning models using Azure Machine Learning for fraud detection systems</li>
-                        <li>Created automated customer service solutions using Azure OpenAI with RAG (Retrieval-Augmented Generation) architecture</li>
-                        <li>Implemented Azure AI Search for intelligent document retrieval and knowledge base management</li>
-                        <li>Utilized Azure Document Intelligence for automated document processing and data extraction</li>
-                        <li>Led technical architecture decisions for Azure cloud-native financial applications</li>
-                        <li>Deployed solutions using Azure Functions, Azure App Service, and Azure Kubernetes Service (AKS)</li>
-                        <li>Integrated Azure Cosmos DB for scalable, high-performance data storage and retrieval</li>
-                        <li>Developed cross-platform mobile applications using .NET MAUI for banking operations with Azure backend integration</li>
-                        <li>Integrated LangChain Memory Manager (LangChain.NET) for persistent context management and conversation history in .NET applications</li>
-                        <li>Managed AI development using Cursor and Windsurf in Axos Bank's application using Azure DevOps, implementing new features and solving bugs</li>
-                        <li>Developed AI Fraud Agent for real-time fraud detection</li>
-                    </ul>
-                </div>
+            <div class="stat-item">
+                <div class="stat-number">12</div>
+                <div class="stat-label">AI Agents Built</div>
             </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-title">AI Agent Developer</div>
-                    <div class="card-subtitle">Magaya Corporation</div>
-                    <div class="card-date">August 2021 - December 2024 | Remote</div>
-                </div>
-                <div class="card-body">
-                    <ul>
-                        <li>Led Xamarin.Forms and .NET MAUI development for Flow WMS warehouse management system</li>
-                        <li>Integrated GraphQL APIs for efficient data querying and real-time updates in enterprise mobile applications</li>
-                        <li>Spearheaded migration from Xamarin.Forms to .NET MAUI for cross-platform mobile applications</li>
-                        <li>Designed mobile architecture patterns (MVVM, Clean Architecture) for iOS, Android, and Windows platforms</li>
-                        <li>Began AI journey using GitHub Copilot as primary AI coding assistant, accelerating development and learning AI-powered development patterns</li>
-                        <li>Implemented administrative workflow automation using n8n (low-code/no-code orchestration platform) for business process automation, connecting multiple systems and streamlining operations</li>
-                        <li>Collaborated with UI/UX designers and product managers to refine user interfaces and enhance operational efficiency</li>
-                        <li>Provided technical leadership and mentorship to junior developers</li>
-                        <li>Coordinated with Autonoma to implement AI-driven end-to-end (E2E) testing solutions</li>
-                    </ul>
-                </div>
+            <div class="stat-item">
+                <div class="stat-number">99.9%</div>
+                <div class="stat-label">Uptime</div>
             </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-title">Freelance Mobile Developer</div>
-                    <div class="card-subtitle">Various Clients (Intelisoft S.A., YPrime, Proto-brz, Practice Law Institute, BIS S.A.)</div>
-                    <div class="card-date">February 2015 - August 2021 | Remote</div>
-                </div>
-                <div class="card-body">
-                    <ul>
-                        <li>Developed Xamarin.Forms applications for Tributación Directa and Factura Electrónica (electronic invoicing and taxation)</li>
-                        <li>Created UberWash app with Uber-like functionality for car wash scheduling</li>
-                        <li>Built native iOS applications using XCode and Swift for INSURANCE Costa Rica (emergency services)</li>
-                        <li>Developed chat-based iOS applications for Zermat and Teledolar using Telegram Open Source</li>
-                        <li>Created cross-platform applications for clinical studies, book sharing, and product review management</li>
-                    </ul>
-                </div>
+            <div class="stat-item">
+                <div class="stat-number">&lt;600ms</div>
+                <div class="stat-label">Response Time</div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Projects Section -->
-        <section id="projects">
-            <h2>Key Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <h4>ParadigmStore E-commerce Platform</h4>
-                    <p>Multi-tenant SaaS platform with 12 autonomous AI agents. Production deployment serving real users with 99.9%+ uptime.</p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">LangChain</span>
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Docker</span>
-                        <span class="tech-tag">PostgreSQL</span>
-                        <span class="tech-tag">Gemini 2.5 Pro</span>
-                        <span class="tech-tag">Ollama</span>
-                    </div>
+    <!-- Products Section -->
+    <section id="products" class="container">
+        <h2 class="section-title">Production <span>Products</span></h2>
+        
+        <div class="products-grid">
+            <!-- Lucid Zen (Azure) -->
+            <div class="product-card" style="--card-accent: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);">
+                <div class="product-icon" style="background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);">
+                    🧘
                 </div>
-
-                <div class="project-card">
-                    <h4>Marketing Performance Agent</h4>
-                    <p>Autonomous marketing agent with LangChain orchestration, LangChain Memory for conversation history, and scientific method workflows. Manages throttle optimization, credit firing, and real-time performance tracking.</p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">LangChain</span>
-                        <span class="tech-tag">LangChain Memory</span>
-                        <span class="tech-tag">Scientific Method</span>
-                        <span class="tech-tag">Everflow API</span>
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Autonomous AI</span>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <h4>Axos Bank Fraud Detection Agent</h4>
-                    <p>Multi-modal AI system for real-time fraud detection. 95.2% accuracy, <600ms response time, serving millions of customers.</p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">XGBoost</span>
-                        <span class="tech-tag">Neural Networks</span>
-                        <span class="tech-tag">GNN</span>
-                        <span class="tech-tag">RAG</span>
-                        <span class="tech-tag">Qdrant</span>
-                        <span class="tech-tag">Python</span>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <h4>Customer Service AI Agent</h4>
-                    <p>LLM-driven customer service with multi-model intent detection, WhatsApp integration, and brand-aware response generation using LangChain Memory for conversation history.</p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">Gemini 2.5 Pro</span>
-                        <span class="tech-tag">LangChain Memory</span>
-                        <span class="tech-tag">WhatsApp API</span>
-                        <span class="tech-tag">LangChain</span>
-                        <span class="tech-tag">Langfuse</span>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <h4>Payment Processing System</h4>
-                    <p>Multi-gateway payment processing with Stripe, BAC Credomatic, PayPal, SINPE integration and automated tax calculation.</p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">Stripe</span>
-                        <span class="tech-tag">BAC Credomatic</span>
-                        <span class="tech-tag">PayPal</span>
-                        <span class="tech-tag">GraphQL</span>
-                        <span class="tech-tag">Flask</span>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <h4>Universal Fraud Detection SDK</h4>
-                    <p>Cross-platform SDK supporting 7 languages (Python, C#, JavaScript, Java, PHP, Ruby, Go) with HTTP interception.</p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">Multi-language</span>
-                        <span class="tech-tag">SDK</span>
-                        <span class="tech-tag">HTTP Interception</span>
-                        <span class="tech-tag">Zero-code Integration</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Skills Section -->
-        <section id="skills">
-            <h2>Technical Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <h4>AI Frameworks & Tools</h4>
-                    <ul>
-                        <li>LangChain (Production - AgentExecutor, Tools, Chains, Orchestration)</li>
-                        <li>LangChain Orchestrator (Multi-agent workflows, Scientific Method)</li>
-                        <li>MemGPT, GilgameshAI (Memory Systems)</li>
-                        <li>LLaVA, YOLO (Computer Vision)</li>
-                        <li>OpenAI API, Google Gemini 2.5 Pro</li>
-                        <li>TensorFlow, PyTorch, Scikit-learn</li>
-                    </ul>
-                </div>
-
-                <div class="skill-card">
-                    <h4>AI Agent Development</h4>
-                    <ul>
-                        <li>Multi-agent orchestration (12 production agents)</li>
-                        <li>LangChain AgentExecutor, Tools, Chains</li>
-                        <li>Autonomous agent workflows with LangChain</li>
-                        <li>Scientific Method Orchestration (LangChain-based)</li>
-                        <li>Prompt Engineering & Chain Construction</li>
-                        <li>Natural Language Processing (NLP)</li>
-                        <li>Intent Detection (ML-based + LLM fallback)</li>
-                        <li>Conversational AI (WhatsApp integration)</li>
-                        <li>Speech-to-Text (Whisper), Text-to-Speech (TTS)</li>
-                        <li>Voice AI Integration, Audio Processing</li>
-                        <li>Digital Signal Processing (DSP)</li>
-                    </ul>
-                </div>
-
-                <div class="skill-card">
-                    <h4>ML & Data Engineering</h4>
-                    <ul>
-                        <li>XGBoost, Neural Networks, Graph Neural Networks (GNN)</li>
-                        <li>Ensemble Methods, Feature Engineering</li>
-                        <li>Model Training Pipelines, Auto-retraining</li>
-                        <li>Model Drift Detection, Performance Monitoring</li>
-                        <li>Random Forest, SVM, Logistic Regression</li>
-                        <li>BigQuery, PostgreSQL, Redis</li>
-                        <li>Data Pipelines, Real-time Processing</li>
-                        <li>RAG Systems (Qdrant, Embeddings)</li>
-                    </ul>
-                </div>
-
-                <div class="skill-card">
-                    <h4>Programming Languages</h4>
-                    <ul>
-                        <li>Python (3 years)</li>
-                        <li>JavaScript, TypeScript</li>
-                        <li>C#, Java</li>
-                        <li>SQL</li>
-                    </ul>
-                </div>
-
-                <div class="skill-card">
-                    <h4>APIs & Integration</h4>
-                    <ul>
-                        <li>REST APIs</li>
-                        <li>GraphQL (Magaya Corporation)</li>
-                        <li>Webhooks, WebSocket</li>
-                        <li>Payment Processing (Stripe, BAC, PayPal, SINPE)</li>
-                    </ul>
-                </div>
-
-                <div class="skill-card">
-                    <h4>Cloud & DevOps</h4>
-                    <ul>
-                        <li>Docker, Kubernetes</li>
-                        <li>Nginx, Prometheus</li>
-                        <li>DigitalOcean, Contabo VPS</li>
-                        <li>Azure, Google Cloud Platform</li>
-                    </ul>
-                </div>
-
-                <div class="skill-card">
-                    <h4>Mobile Development</h4>
-                    <ul>
-                        <li>.NET MAUI, Xamarin.Forms</li>
-                        <li>iOS (XCode, Swift)</li>
-                        <li>Cross-platform Architecture</li>
-                    </ul>
-                </div>
-
-                <div class="skill-card">
-                    <h4>Development Tools</h4>
-                    <ul>
-                        <li>Cursor IDE (Master - Primary IDE)</li>
-                        <li>GitHub Copilot (Early Adopter - Magaya)</li>
-                        <li>Windsurf Power User (Udemy)</li>
-                        <li>Git, CI/CD</li>
-                        <li>AI-Assisted Development</li>
-                    </ul>
-                </div>
-
-                <div class="skill-card">
-                    <h4>Automation & Workflow</h4>
-                    <ul>
-                        <li>n8n (Workflow Automation - Magaya)</li>
-                        <li>Make (Low-Code Workflows)</li>
-                        <li>Business Process Automation</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Achievements Section -->
-        <section id="achievements">
-            <h2>Key Achievements</h2>
-            <div class="achievements-grid">
-                <div class="achievement-card">
-                    <div class="achievement-number">25</div>
-                    <div class="achievement-label">Years Software Development</div>
-                </div>
-                <div class="achievement-card">
-                    <div class="achievement-number">3</div>
-                    <div class="achievement-label">Years AI Agent Development</div>
-                </div>
-                <div class="achievement-card">
-                    <div class="achievement-number">12</div>
-                    <div class="achievement-label">Production AI Agents</div>
-                </div>
-                <div class="achievement-card">
-                    <div class="achievement-number">99.9%+</div>
-                    <div class="achievement-label">System Uptime</div>
-                </div>
-                <div class="achievement-card">
-                    <div class="achievement-number">&lt;600ms</div>
-                    <div class="achievement-label">Average Response Time</div>
-                </div>
-                <div class="achievement-card">
-                    <div class="achievement-number">95.2%</div>
-                    <div class="achievement-label">Fraud Detection Accuracy</div>
-                </div>
-                <div class="achievement-card">
-                    <div class="achievement-number">500+</div>
-                    <div class="achievement-label">Users Served (ParadigmStore)</div>
-                </div>
-                <div class="achievement-card">
-                    <div class="achievement-number">Millions</div>
-                    <div class="achievement-label">Users Served (Axos Bank)</div>
-                </div>
-            </div>
-
-            <div style="margin-top: var(--space-xl);">
-                <h3 style="color: var(--accent); margin-bottom: var(--space-md); font-size: var(--font-2xl);">Notable Achievements</h3>
-                <div class="card">
-                    <div class="card-body">
-                        <ul>
-                            <li>Built production fraud detection system serving millions of customers with <600ms response time and 95.2% accuracy</li>
-                            <li>Architected 12-agent AI platform (ParadigmStore) with LangChain orchestration, LangChain Memory, and multi-modal vision</li>
-                            <li>Built Marketing Performance Agent with LangChain orchestration, LangChain Memory for conversation history, and autonomous decision-making for marketing optimization</li>
-                            <li>Mastered Cursor IDE as primary development tool, enabling rapid AI agent development and production deployment</li>
-                            <li>Deployed production e-commerce platform with 2,500+ products, multi-payment processing, and full order lifecycle</li>
-                            <li>Implemented GraphQL API integration at Magaya Corporation for enterprise warehouse management systems</li>
-                            <li>Developed computer vision systems using Gemini 2.5 Pro (face recognition, product search) + LLaVA + YOLO</li>
-                            <li>Created AI agent ecosystem with customer service, payment, marketing performance (LangChain-based), fraud detection, shipping, and order management</li>
-                            <li>Achieved 99.9%+ uptime with production deployment on VPS, Docker, Nginx, and Prometheus monitoring</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CV Download/Upload Section -->
-        <section id="cv">
-            <h2>Resume / CV</h2>
-            <div class="cv-section">
-                <h3 style="color: var(--text-primary); margin-bottom: var(--space-lg); font-size: var(--font-xl);">Download My Resume</h3>
-                <div style="text-align: center; padding: var(--space-lg);">
-                    <a href="Joaquin_Cubero_CV_2025.pdf" download="Joaquin_Cubero_CV_2025.pdf" class="cv-download-btn" id="cv-download-link">
-                        <i class="fas fa-download"></i> Download CV (English) - PDF
-                    </a>
-                    <p class="cv-info">English Version | Updated November 2025</p>
-                    <p style="margin-top: 10px; font-size: 0.85em; color: var(--text-muted);">
-                        <small>If download doesn't work, <a href="Joaquin_Cubero_CV_2025.pdf" target="_blank" style="color: var(--accent); text-decoration: underline;">open PDF here</a> and save from browser</small>
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Education & Certifications -->
-        <section id="education">
-            <h2>Education & Certifications</h2>
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-title">Master of Business Administration in AI for Business</div>
-                    <div class="card-subtitle">Panamerican Business School</div>
-                    <div class="card-date">2023 - Present | Remote</div>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-title">BA in Systems Engineering</div>
-                    <div class="card-subtitle">Universidad Internacional De Las Americas (UIA)</div>
-                    <div class="card-date">2007 | San José, Costa Rica</div>
-                </div>
-            </div>
-
-            <div style="margin-top: var(--space-xl);">
-                <h3 style="color: var(--accent); margin-bottom: var(--space-md); font-size: var(--font-2xl);">Certifications & Achievements</h3>
-                <div class="card">
-                    <div class="card-body">
-                        <ul>
-                            <li>Master of Cursor IDE - Primary development environment, expert in AI-powered coding assistance and rapid development</li>
-                            <li>Windsurf Power User - Udemy</li>
-                            <li>AI Spark Diploma - Coforge University</li>
-                            <li>Information Security and Privacy Diploma - Coforge University</li>
-                            <li>Diploma in Precision Mechanics - INA (Instituto Nacional de Aprendizaje)</li>
-                            <li>Diploma in English Language - British Institute</li>
-                            <li>Google Cloud AI/ML Specialization (In Progress)</li>
-                            <li>Advanced Python Programming Certification</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact">
-            <h2>Get In Touch</h2>
-            <div class="card" style="text-align: center; padding: var(--space-2xl);">
-                <p style="font-size: var(--font-xl); margin-bottom: var(--space-lg); color: var(--text-secondary);">
-                    I'm always open to discussing new opportunities, interesting projects, or collaboration ideas.
+                <span class="live-badge">Live</span>
+                <h3>Lucid Zen (Azure)</h3>
+                <p class="product-type">AI Meditation App • Premium</p>
+                <p>
+                    Personal AI meditation guide with premium DragonHD voice synthesis. 
+                    Creates personalized meditation experiences with genres like calm, sleep, focus, and lucid dreaming.
+                    Features Google login, PayPal subscriptions, community library, and karaoke-style playback.
                 </p>
-                <div style="display: flex; justify-content: center; gap: var(--space-xl); flex-wrap: wrap; margin-bottom: var(--space-xl);">
-                    <a href="mailto:jcubero@gmail.com" style="color: var(--accent); text-decoration: none; font-weight: 600; font-size: var(--font-lg);">
-                        <i class="fas fa-envelope"></i> jcubero@gmail.com
+                <div class="tech-stack">
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">Azure Speech (DragonHD)</span>
+                    <span class="tech-tag">Grok (xAI)</span>
+                    <span class="tech-tag">Azure Functions</span>
+                    <span class="tech-tag">Cosmos DB</span>
+                    <span class="tech-tag">PayPal</span>
+                </div>
+                <div class="product-links">
+                    <a href="https://lucid.paradigmstore.dev" target="_blank" class="product-link">
+                        <i class="fas fa-external-link-alt"></i> Live Demo
                     </a>
-                    <a href="https://www.linkedin.com/in/joaquin-cubero/" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 600; font-size: var(--font-lg);">
-                        <i class="fab fa-linkedin"></i> LinkedIn
+                </div>
+            </div>
+
+            <!-- Lucid Zen (VPS) -->
+            <div class="product-card" style="--card-accent: linear-gradient(135deg, #10b981 0%, #34d399 100%);">
+                <div class="product-icon" style="background: linear-gradient(135deg, #10b981 0%, #34d399 100%);">
+                    🧘
+                </div>
+                <span class="live-badge">Live</span>
+                <h3>Lucid Zen (Self-Hosted)</h3>
+                <p class="product-type">AI Meditation App • Open Source</p>
+                <p>
+                    Self-hosted version with Kokoro TTS and DeepSeek LLM. 
+                    Full MCP (Model Context Protocol) implementation with Docker deployment.
+                    10x cheaper per meditation while maintaining quality narratives.
+                </p>
+                <div class="tech-stack">
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">FastAPI/MCP</span>
+                    <span class="tech-tag">DeepSeek</span>
+                    <span class="tech-tag">Kokoro TTS</span>
+                    <span class="tech-tag">MongoDB</span>
+                    <span class="tech-tag">Docker</span>
+                    <span class="tech-tag">Nginx</span>
+                </div>
+                <div class="product-links">
+                    <a href="https://lucid.mentaltrip.me" target="_blank" class="product-link">
+                        <i class="fas fa-external-link-alt"></i> Live Demo
                     </a>
-                    <a href="https://github.com/jcuberogit" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 600; font-size: var(--font-lg);">
+                    <a href="https://github.com/jcuberogit/Lucid" target="_blank" class="product-link">
                         <i class="fab fa-github"></i> GitHub
                     </a>
-                    <span style="color: var(--text-secondary); font-weight: 600; font-size: var(--font-lg);">
-                        <i class="fas fa-phone"></i> +506 8689-5526
-                    </span>
                 </div>
             </div>
-            
-            <!-- Calendly Integration -->
-            <div id="interview" class="card" style="margin-top: var(--space-xl);">
-                <h3 style="color: var(--text-primary); margin-bottom: var(--space-md); font-size: var(--font-xl); text-align: center;">
-                    <i class="fas fa-calendar-alt" style="color: var(--accent); margin-right: var(--space-xs);"></i>
-                    Schedule an Interview
-                </h3>
-                <p style="text-align: center; color: var(--text-secondary); margin-bottom: var(--space-sm);">
-                    Book a time that works for you. Available <strong style="color: var(--accent);">Monday - Friday, 10:00 AM - 4:00 PM</strong> (CST)
-                </p>
-                <p style="text-align: center; color: var(--text-muted); font-size: var(--font-sm); margin-bottom: var(--space-lg);">
-                    <i class="fas fa-sync-alt" style="margin-right: var(--space-xs);"></i>
-                    Automatically synced with my Google Calendar and Apple Calendar - only available times are shown
-                </p>
-                <!-- Calendly inline widget -->
-                <div class="calendly-inline-widget" 
-                     data-url="https://calendly.com/jcubero/new-meeting" 
-                     style="min-width:320px;height:700px;border-radius: var(--radius-lg); overflow: hidden;">
-                </div>
-                <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-            </div>
-        </section>
-    </div>
 
+            <!-- NomadaLLM -->
+            <div class="product-card" style="--card-accent: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);">
+                <div class="product-icon" style="background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);">
+                    🔒
+                </div>
+                <span class="live-badge">Production</span>
+                <h3>NomadaLLM</h3>
+                <p class="product-type">Embedded LLM SDK • Enterprise</p>
+                <p>
+                    Universal embedded LLM SDK for privacy-first applications. 
+                    Built-in PII detection, masking, and compliance modes (SOC2, GDPR, HIPAA, PCI-DSS).
+                    Cross-platform: Web (WASM), iOS, Android, Desktop.
+                </p>
+                <div class="tech-stack">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">TypeScript</span>
+                    <span class="tech-tag">Swift</span>
+                    <span class="tech-tag">Kotlin</span>
+                    <span class="tech-tag">ONNX</span>
+                    <span class="tech-tag">WASM</span>
+                    <span class="tech-tag">llama.cpp</span>
+                </div>
+                <div class="product-links">
+                    <a href="https://github.com/paradigmstore/nomadallm" target="_blank" class="product-link">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <a href="https://pypi.org/project/nomadallm/" target="_blank" class="product-link">
+                        <i class="fab fa-python"></i> PyPI
+                    </a>
+                </div>
+            </div>
+
+            <!-- Hello Store -->
+            <div class="product-card" style="--card-accent: linear-gradient(135deg, #f97316 0%, #fb923c 100%);">
+                <div class="product-icon" style="background: linear-gradient(135deg, #f97316 0%, #fb923c 100%);">
+                    🛒
+                </div>
+                <span class="live-badge">Live</span>
+                <h3>Hello Store</h3>
+                <p class="product-type">E-Commerce Platform • WhatsApp Bot</p>
+                <p>
+                    Full e-commerce platform with AI-powered WhatsApp chatbot for customer service.
+                    Features product catalog with 2,500+ items, multi-payment processing (PayPal, BAC, SINPE),
+                    order management, and autonomous shipping coordination.
+                </p>
+                <div class="tech-stack">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">WhatsApp Business API</span>
+                    <span class="tech-tag">LangChain</span>
+                    <span class="tech-tag">Gemini 2.5</span>
+                    <span class="tech-tag">PostgreSQL</span>
+                    <span class="tech-tag">Redis</span>
+                    <span class="tech-tag">Docker</span>
+                </div>
+                <div class="product-links">
+                    <a href="https://hellostore.shop" target="_blank" class="product-link">
+                        <i class="fas fa-external-link-alt"></i> Website
+                    </a>
+                    <a href="https://wa.me/50688695526" target="_blank" class="product-link">
+                        <i class="fab fa-whatsapp"></i> WhatsApp Bot
+                    </a>
+                </div>
+            </div>
+
+            <!-- ParadigmStore Admin Dashboard -->
+            <div class="product-card" style="--card-accent: linear-gradient(135deg, #ec4899 0%, #f472b6 100%);">
+                <div class="product-icon" style="background: linear-gradient(135deg, #ec4899 0%, #f472b6 100%);">
+                    🤖
+                </div>
+                <span class="live-badge">Production</span>
+                <h3>ParadigmStore AI Platform</h3>
+                <p class="product-type">Multi-Agent System • 12 AI Agents</p>
+                <p>
+                    Enterprise AI platform with 12 specialized agents: Customer Service, Payment Processing, 
+                    Fraud Detection (95.2% accuracy), Marketing Performance, Product Catalog, 
+                    Shipping Coordination, Order Management, and more. LangChain orchestration with persistent memory.
+                </p>
+                <div class="tech-stack">
+                    <span class="tech-tag">LangChain</span>
+                    <span class="tech-tag">CrewAI</span>
+                    <span class="tech-tag">Gemini 2.5 Pro</span>
+                    <span class="tech-tag">OpenAI GPT-4o</span>
+                    <span class="tech-tag">LLaVA (Vision)</span>
+                    <span class="tech-tag">Redis</span>
+                    <span class="tech-tag">PostgreSQL</span>
+                </div>
+                <div class="product-links">
+                    <a href="https://admin.paradigmstore.dev" target="_blank" class="product-link">
+                        <i class="fas fa-external-link-alt"></i> Dashboard
+                    </a>
+                </div>
+            </div>
+
+            <!-- Job Finder Agent -->
+            <div class="product-card" style="--card-accent: linear-gradient(135deg, #6366f1 0%, #818cf8 100%);">
+                <div class="product-icon" style="background: linear-gradient(135deg, #6366f1 0%, #818cf8 100%);">
+                    💼
+                </div>
+                <span class="live-badge">Active</span>
+                <h3>Job Finder Agent</h3>
+                <p class="product-type">Autonomous Agent • Career Automation</p>
+                <p>
+                    Autonomous job search agent that monitors job boards, matches opportunities to CV,
+                    generates tailored applications, and manages the full application pipeline.
+                    Integrates with LinkedIn, email, and applicant tracking systems.
+                </p>
+                <div class="tech-stack">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">LangChain</span>
+                    <span class="tech-tag">Selenium</span>
+                    <span class="tech-tag">GPT-4o</span>
+                    <span class="tech-tag">BigQuery</span>
+                    <span class="tech-tag">Gmail API</span>
+                </div>
+                <div class="product-links">
+                    <a href="https://github.com/jcuberogit" target="_blank" class="product-link">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="container">
+        <h2 class="section-title">Technical <span>Skills</span></h2>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h4><i class="fas fa-brain"></i> AI/ML</h4>
+                <ul>
+                    <li>LangChain, CrewAI</li>
+                    <li>OpenAI, Anthropic, Gemini</li>
+                    <li>RAG Systems (Qdrant)</li>
+                    <li>Fine-tuning, Embeddings</li>
+                    <li>Computer Vision (LLaVA, YOLO)</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h4><i class="fas fa-code"></i> Languages</h4>
+                <ul>
+                    <li>Python (Primary)</li>
+                    <li>TypeScript / JavaScript</li>
+                    <li>C# / .NET</li>
+                    <li>SQL</li>
+                    <li>Swift, Kotlin</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h4><i class="fas fa-server"></i> Backend</h4>
+                <ul>
+                    <li>FastAPI, Flask</li>
+                    <li>Node.js, Express</li>
+                    <li>PostgreSQL, MongoDB</li>
+                    <li>Redis, BigQuery</li>
+                    <li>REST, GraphQL, WebSocket</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h4><i class="fas fa-palette"></i> Frontend</h4>
+                <ul>
+                    <li>React, Next.js</li>
+                    <li>TailwindCSS</li>
+                    <li>TypeScript</li>
+                    <li>PWA</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h4><i class="fas fa-cloud"></i> Cloud & DevOps</h4>
+                <ul>
+                    <li>Docker, Kubernetes</li>
+                    <li>Azure, GCP</li>
+                    <li>Nginx, Certbot</li>
+                    <li>CI/CD, GitHub Actions</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h4><i class="fas fa-tools"></i> Dev Tools</h4>
+                <ul>
+                    <li>Cursor IDE (Master)</li>
+                    <li>Windsurf</li>
+                    <li>GitHub Copilot</li>
+                    <li>n8n, Make</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="container">
+        <div class="contact-section">
+            <h2 class="section-title">Get In <span>Touch</span></h2>
+            <p style="color: var(--text-secondary); font-size: 1.1rem; max-width: 600px; margin: 0 auto;">
+                Open to discussing AI projects, consulting, or full-time opportunities.
+                Based in Costa Rica, working with global teams.
+            </p>
+            <div class="contact-links">
+                <a href="mailto:jcubero@gmail.com" class="contact-link">
+                    <i class="fas fa-envelope"></i> jcubero@gmail.com
+                </a>
+                <a href="https://www.linkedin.com/in/joaquin-cubero/" target="_blank" class="contact-link">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+                <a href="https://github.com/jcuberogit" target="_blank" class="contact-link">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <span class="contact-link">
+                    <i class="fas fa-phone"></i> +506 8689-5526
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Joaquin Cubero. All rights reserved.</p>
-        <p style="margin-top: var(--space-xs); opacity: 0.8;">AI Developer | AI Agent Architect | Full-Stack Developer</p>
+        <p>&copy; 2026 Joaquin Cubero. All rights reserved.</p>
+        <p style="margin-top: 8px; font-size: 0.9rem;">AI Agent Architect • Full-Stack Developer • Costa Rica</p>
     </footer>
 
     <script>
-        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
         });
-
-        // Highlight active nav item on scroll
-        window.addEventListener('scroll', () => {
-            let current = '';
-            const sections = document.querySelectorAll('section[id]');
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (pageYOffset >= sectionTop - 200) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            document.querySelectorAll('nav a').forEach(link => {
-                link.style.color = '';
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.style.color = 'var(--accent)';
-                    link.style.background = 'var(--accent-light)';
-                }
-            });
-        });
-        
-        // Simple PDF download - let browser handle it naturally
-        // The download attribute should work for same-origin requests
-
     </script>
 </body>
 </html>
-<!-- Updated: November 2025 -->
